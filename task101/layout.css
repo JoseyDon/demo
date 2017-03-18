@@ -1,0 +1,32 @@
+table{
+	margin:50px auto;
+}
+td:first-child{
+	height: 50px;
+	font-size: 24px;
+	padding-right: 30px;
+}
+td:nth-child(3){
+	padding-left: 10px;
+}
+input{
+	width: 250px;
+	height: 32px;
+	border-radius: 5px;
+	border-color: #ccc;
+}
+button{
+	background-color: #2563AD;
+	color: #fff;
+	height: 40px;
+	width: 90px;
+	font-size: 24px;
+	border:none;
+	border-radius: 5px;
+}
+#name-info,#pw1-info,#pw2-info,#email-info,#phone-info{
+	color: #ccc;
+	font-size: 15px;
+	vertical-align: top;
+	opacity: 0;
+}
