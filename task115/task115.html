@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>UI组件之浮出层</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<link rel="stylesheet" type="text/css" href="layout.css">
+</head>
+<body>
+    <header>
+        <ul>
+            <li class="signin-link" id="loginLink">
+                <a href=""> 登录</a>
+            </li>
+        </ul>
+    </header>
+    <p>点击半透明遮罩或浮出层顶部关闭按钮,关闭浮出层</p>
+    <p>点击页面深绿色头部登录按钮,显示浮出层</p>
+    <p>拖拽浮出层顶部,可使其移动</p>
+    <p>拖拽浮出层右边框或下边框,可改变其大小</p>
+
+    <div class="mask" id="mask"></div>
+    <div class="login-box" id="loginBox">
+            <div class="login-box-header" id="loginBoxHeader">
+                <p>登录<input class="close-btn" id="closeBtn" type="button" value="X" /></p>
+            </div>
+
+            <div class="login-content">
+		<table>
+	<tr>
+	<td>名称</td>
+	<td><input type="text" name="" id="name"></td>
+	<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td id="name-info">必填，长度为4~16个字符</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>密码</td>
+		<td><input type="password" name="" id="pw1"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td id="pw1-info">必填，输入密码</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>密码确认</td>
+		<td><input type="password" name="" id="pw2"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td id="pw2-info">必填，再次输入相同的密码</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>邮箱</td>
+		<td><input type="text" name="" id="email"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td id="email-info">必填，输入邮箱</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>手机</td>
+		<td><input type="text" name="" id="phone"></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td id="phone-info">必填，输入手机号码</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><button>提交</button></td>
+	</tr>
+</table>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="check.js"></script>
+<script type="text/javascript" src="js.js"></script>
+</body>
+</html>
