@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时抢购商品</title>
+	<script type="text/javascript" src="doMove.js"></script>
+	<script type="text/javascript" src="opacity.js"></script>
+	<style>
+	*{margin: 0;padding: 0;}
+	body{background: #efefef;}
+	li{list-style: none;}
+	#buy{
+		position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 800px;
+        background: #efefef;
+	}
+	#buy h2{color: #595959;font-size: 14px;border-bottom: 3px solid #595959;margin-bottom: 10px;}
+	#buy ul{width: 800px;}
+	#buy div{position: relative;z-index: 1;background: #efefef;height: 270px;width: 200px;}
+	#buy .after{position: absolute;top:32px;}
+	#buy ul li{float: left;width: 200px;height: 270px;}
+	#buy ul li input{width: 130px;height: 20px;
+	border:1px solid #333;
+box-shadow: 0 1px 2px #8b8b8b inset,0 -1px 0 #3d3d3d inset,0 -2px 3px #8b8b8b inset;
+background: -webkit-linear-gradient(top,#656565,#4c4c4c);
+background: -moz-linear-gradient(top,#656565,#4a4a4a);
+background: linear-gradient(top,#656565,#4a4a4a);
+text-align: center;
+font-weight: bold;
+color: #fff;
+text-shadow:1px 1px 1px #333;
+border-radius: 5px;
+}
+	#buy ul li button{
+		width: 40px;height: 20px;
+		border:1px solid #b42323;
+box-shadow: 0 1px 2px #e99494 inset,0 -1px 0 #954b4b inset,0 -2px 3px #e99494 inset;
+background: -webkit-linear-gradient(top,#d53939,#b92929);
+background: -moz-linear-gradient(top,#d53939,#b92929);
+background: linear-gradient(top,#d53939,#b92929);
+text-align: center;
+font-weight: bold;
+color: #fff;
+text-shadow:1px 1px 1px #333;
+border-radius: 5px;
+	}
+	#buy .time{color: #656565;font-size: 16px;width: 200px;height: 50px;line-height: 50px;}
+	#buy img{width: 180px;}
+	#buy ul li p{color: #656565;font-size: 12px;}
+	#buy ul li div img{height: 108px;}
+	#buy ul li span{color: #838282;font-size: 14px;display: inline-block;}
+	#buy ul li span strong{color: red;font-size: 14px;}
+	#buy table{width: 800px;}
+	#buy table tr{background: #ccc;display: block;margin-bottom: 5px;}
+	#buy table th{width: 300px;height: 40px;text-align: center;line-height: 40px;color: #603939;}
+	#buy table td{width: 300px;text-align: center;height: 100px;font-size: 12px;}
+	#buy table td img{width: 150px;height: 90px;border: 1px solid;}
+	#buy span{font-size: 18px;}
+	#buy span strong{color: red;}
+	</style>
+</head>
+<body>
+	<div id="buy">
+		<h2>限购时间</h2>
+		<ul>
+			<li>
+				<div>
+					<input type="text" value="September 17,2018,10:30:0">
+					<button>确定</button>
+					<p class="time">剩余00天00时00分00秒</p>
+					<img src="img/ad1.png">
+					<span>疯狂599，美的爆款隐藏式面板下拉门微波炉</span>
+					<span>抢购价<strong>￥599.99</strong></span>
+				</div>
+				<img class="after" src="img/down.png">
+			</li>
+			<li>
+				<div>
+					<input type="text" value="September 17,2018,10:30:0">
+					<button>确定</button>
+					<p class="time">剩余00天00时00分00秒</p>
+					<img src="img/ad2.png">
+					<span>疯狂599，美的爆款隐藏式面板下拉门微波炉</span>
+					<span>抢购价<strong>￥599.00</strong></span>
+				</div>
+				<img class="after" src="img/down.png">
+			</li>
+			<li>
+				<div>
+					<input type="text" value="September 17,2018,10:30:0">
+					<button>确定</button>
+					<p class="time">剩余00天00时00分00秒</p>
+					<img src="img/ad3.png">
+					<span>疯狂599，美的爆款隐藏式面板下拉门微波炉</span>
+					<span>抢购价<strong>￥2.00</strong></span>
+				</div>
+				<img class="after" src="img/down.png">
+			</li>
+			<li>
+				<div>
+					<input type="text" value="September 17,2018,10:30:0">
+					<button>确定</button>
+					<p class="time">剩余00天00时00分00秒</p>
+					<img src="img/ad4.png">
+					<span>疯狂599，美的爆款隐藏式面板下拉门微波炉</span>
+					<span>抢购价<strong>￥1788.00</strong></span>
+				</div>
+				<img class="after" src="img/down.png">
+			</li>			
+		</ul>
+		<table cellspacing="0">
+			<tr>
+				<th>商品名称</th>
+				<th>价钱</th>
+				<th>图片</th>
+			</tr>
+<!-- 			<tr>
+	<td>疯狂599，美的爆款隐藏式面板下拉门微波炉</td>
+	<td>599.00</td>
+	<td><img src="img/ad1.png"></td>
+</tr>
+<tr>
+	<td>疯狂599，美的爆款隐藏式面板下拉门微波炉</td>
+	<td>599.00</td>
+	<td><img src="img/ad1.png"></td>
+</tr>
+<tr>
+	<td>疯狂599，美的爆款隐藏式面板下拉门微波炉</td>
+	<td>599.00</td>
+	<td><img src="img/ad1.png"></td>
+</tr>
+<tr>
+	<td>疯狂599，美的爆款隐藏式面板下拉门微波炉</td>
+	<td>599.00</td>
+	<td><img src="img/ad1.png"></td>
+</tr> -->
+		</table>
+		<span>总价：<strong id="all">00.00</strong>元</span>
+	</div>
+	<script>
+	//倒计时
+		var iNow = null
+		var iNew = null
+		var t = 0;
+		var str = '';
+		var timer = null;
+		var x = 0;
+
+		var buy = document.getElementById('buy');
+		var aDiv = buy.getElementsByTagName('div');
+		var aLi = document.getElementsByTagName('li');
+		var aInput = document.getElementsByTagName('input');
+		var aBtn = document.getElementsByTagName('button');
+		var aP = document.getElementsByTagName('p');
+
+		var prices = [];
+
+		for (var i = 0; i < aBtn.length; i++) {
+			aBtn[i].index = i;
+			aBtn[i].onclick = function(){
+				x = this.index;
+				iNew = new Date(aInput[x].value);
+				clearInterval(timer);
+				timer = setInterval(function(){
+					iNow = new Date();
+					t = Math.floor((iNew - iNow)/1000);
+					if (t>=0) {
+						str = '剩余'+toTwo(Math.floor(t/86400))+'天' + toTwo(Math.floor(t%86400/3600)) + '时' + toTwo(Math.floor(t%86400%3600/60)) + '分' + toTwo(t%60) + '秒';
+						aP[x].innerHTML = str;
+					}else{
+						str = '剩余00天00时00分00秒';
+						aP[x].innerHTML = str;
+						shake(aDiv[x],'left',down());
+						
+					}
+				},1000);
+			}
+		}
+
+	function shake(obj,attr,endFn){
+		var pos = parseInt(getStyle(obj,attr));
+		var num = 0;
+		var arr = [];//20,-20,18,-18......0;
+		for (var i = 20; i > 0 ; i-=2) {
+			arr.push(i,-i);
+		}
+		arr.push(0);
+
+		clearInterval(obj.shake);
+		obj.shake = setInterval(function(){
+			obj.style[attr] = pos + arr[num] + 'px';
+			num++;
+			if (num === arr.length) {
+				clearInterval(obj.shake);
+				endFn && endFn();
+			}
+		},10);
+	}
+
+
+		function toTwo(n){
+			return n < 10? '0'+n :''+n;
+		}
+
+
+		function down(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				doMove(aDiv[x],'top',10,300);
+				opacity(aDiv[x],10,0,50,add);
+				if (aDiv[x].style.opacity == 0) {
+					clearInterval(timer);
+				}
+			},100);
+		}
+
+		function add(){
+			var oTable = document.getElementsByTagName('table')[0];
+			var all = document.getElementById('all');
+			var newTr = oTable.insertRow(oTable.rows.length);
+			var newName = newTr.insertCell();
+			var newPrice = newTr.insertCell();
+			var newImg = newTr.insertCell();
+			var price = 0;
+			newName.innerHTML = aDiv[x].getElementsByTagName('span')[0].innerHTML;
+			newPrice.innerHTML = aDiv[x].getElementsByTagName('strong')[0].innerHTML.substring(1);
+			newImg.innerHTML = '<img src='+aDiv[x].getElementsByTagName('img')[0].src+'>';
+			prices.push(parseFloat(aDiv[x].getElementsByTagName('strong')[0].innerHTML.substring(1)));
+			for (var i = 0; i < prices.length; i++) {
+				price += prices[i];
+			}
+			all.innerHTML = price.toFixed(2);
+		}
+	</script>
+</body>
+</html>

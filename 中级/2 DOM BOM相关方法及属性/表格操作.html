@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>表格操作</title>
+</head>
+<body>
+<table border="1">
+	<thead>
+		<td>编号</td>
+		<td>姓名</td>
+		<td>性别</td>
+		<td>操作</td>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<script type="text/javascript">
+	var data = [
+		{id:1,name:'张三',sex:'男'},
+		{id:2,name:'李四',sex:'男'},
+		{id:3,name:'小红',sex:'女'},
+		{id:4,name:'小兰',sex:'女'}
+	];
+	var oTable = document.getElementsByTagName('table')[0];
+	var oTbody = oTable.getElementsByTagName('tbody')[0];
+	for (var i = 0; i < data.length; i++) {
+		//动态添加元素
+		var oTr = document.createElement('tr');
+		oTd = document.createElement('td');
+		oTd.innerHTML = data[i].id;
+		oTr.appendChild(oTd);
+
+		oTd = document.createElement('td');
+		oTd.innerHTML = data[i].name;
+		oTr.appendChild(oTd);
+
+		oTd = document.createElement('td');
+		oTd.innerHTML = data[i].sex;
+		oTr.appendChild(oTd);
+
+		//隔行变色
+		if (i%2 == 0) {
+			oTr.style.background = '#ccc';
+		}else{
+			oTr.style.background = 'white';
+		};
+
+		//删除一行
+		var oA = document.createElement('a');
+		oA.innerHTML = '删除';
+		oA.href = 'javascript:;';
+		oA.onclick = function(){
+			oTbody.removeChild(this.parentNode);
+			//重新隔行变色
+			for (var i = 0; i < oTbody.rows.length; i++) {
+				if (i%2 == 0) {
+					oTbody.rows[i].style.background = '#ccc';
+				}else{
+					oTbody.rows[i].style.background = 'white';
+				}
+			}
+		};
+		oTr.appendChild(oA);
+
+		oTbody.appendChild(oTr);
+
+
+	}
+
+</script>
+</body>
+</html>  

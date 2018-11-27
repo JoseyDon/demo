@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击加分效果</title>
+	<script type="text/javascript" src="doMove.js"></script>
+	<script type="text/javascript" src="opacity.js"></script>
+	<style>
+		body{
+			background: :#f1f1f1;
+		}
+		#wrap{
+			position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+		}
+		#content{
+			width: 500px;
+        height: 50px;
+        border:1px solid #1e7db9;
+box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+background: linear-gradient(top,#42a4e0,#2e88c0);
+		}
+		span {line-height: 50px;font-size: 30px;color: #000;position: absolute;top: 0;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+			<div id="content">
+			</div>
+	</div>
+	<script>
+		var oWrap = document.getElementById('wrap');
+		var aSpan = document.getElementsByTagName('span');
+		var len = 10;//	+1个数
+		var num = 0;
+		var timer = null;
+		var finished = false;
+		for (var i = 0; i <= len; i++) {
+			oWrap.innerHTML +='<span>+1</span>';
+			aSpan[i].style.left =  i*45+'px';
+		}
+		oWrap.onclick= function(){
+			if (finished) {return};
+			opacity(oWrap,5,0,85);
+			clearInterval(timer);
+			timer = setInterval(function(){
+				doMove(aSpan[num],'top',10,-150);
+				opacity(aSpan[num],10,0,50);
+				num++;
+				if (num === len+1) {
+					clearInterval(timer);
+					finished = true;
+				}
+			},100);
+		}
+	</script>
+</body>
+</html>

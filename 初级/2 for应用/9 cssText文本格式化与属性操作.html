@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cssText文本格式化与属性操作</title>
+	<style type="text/css">
+		#div1{width: 100px;height: 100px;background: red;}
+	</style>
+</head>
+<body>
+<div id="div1">123</div>
+<button id="btn1">点击</button>
+<script type="text/javascript">
+//cssText添加的是行间样式；
+	var oDiv = document.getElementById('div1');
+	var oBtn = document.getElementById('btn1');
+	oDiv.onclick = function(){
+		//oDiv.style.width = "200px";
+		oDiv.style.cssText = "width:200px;height:200px;";
+	}
+	oBtn.onclick = function(){
+		oDiv.style.cssText = "";
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>自定义属性</title>
+</head>
+<body>
+	<input type="button" value="btn1">
+	<input type="button" value="btn2">
+	<input type="button" value="btn3">
+	<p>btn1</p>
+	<p>btn2</p>
+	<p>btn3</p>
+<script type="text/javascript">
+	var aBtn = document.getElementsByTagName('input');
+	var aP = document.getElementsByTagName('p');
+	var arr = ['张三','李四','王五'];
+	for (var i = 0; i < aBtn.length; i++) {
+		aBtn[i].index = i;	//	自定义属性（索引值）
+		aBtn[i].onclick = function(){
+			this.value = arr[this.index];
+			aP[this.index].innerHTML = arr[this.index];
+		}
+	}
+</script>
+</body>
+</html>

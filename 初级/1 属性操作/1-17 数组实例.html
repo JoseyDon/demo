@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#content{width: 400px;height: 400px;border: 10px solid #ccc;margin: 40px auto 0;position: relative;background: #f1f1f1;}
+		#content a{width: 40px;height: 40px;background: #000;border: 5px solid #fff;position: absolute;top: 175px;text-align: center;text-decoration: none;line-height: 40px;color: #fff;font-size: 30px;font-weight: bold;filter: alpha(opacity:60);opacity: 0.6;}
+		#content a:hover{filter: alpha(opacity:90);opacity: 0.9;}
+		#prev{left: 10px;}
+		#next{right: 10px;}
+		#text{position: absolute;bottom: 0;left: 0;width: 400px;height: 30px;line-height: 30px;text-align: center;margin: 0;color: #fff;background: #000;filter: alpha(opacity:80);opacity: 0.8;}
+		#span1{position: absolute;top: 0;left: 0;width: 400px;height: 30px;line-height: 30px;text-align: center;margin: 0;color: #fff;background: #000;filter: alpha(opacity:80);opacity: 0.8;}
+		#img1{ width: 400px;height: 400px; }
+	</style>
+</head>
+<body>
+<div id="content">
+	<a id="prev" href="javascript:;"><</a>
+	<a id="next" href="javascript:;">></a>
+	<p id="text">图片文字加载中...</p>
+	<span id="span1">数量加载中...</span>
+	<img id="img1" />
+</div>
+<script type="text/javascript">
+	var oPrev = document.getElementById('prev');
+	var oNext = document.getElementById('next');
+	var oText = document.getElementById('text');
+	var oSpan = document.getElementById('span1');
+	var oImg = document.getElementById('img1');
+
+	var arrURL = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+	var arrText = ['第一张图片','第二张图片','第三张图片','第四张图片',];
+	var num = 0;
+	//有数组的时候最好准备一个数字
+
+	//初始化
+	function Tab(){
+	oSpan.innerHTML = num+1 + '/'+ arrText.length;
+	oImg.src = arrURL[num];
+	oText.innerHTML = arrText[num];
+	}
+
+	window.onload = Tab();
+	oPrev.onclick = function(){
+		num--;
+		if (num == -1) {
+			num = arrURL.length-1;
+		}
+		
+		Tab();
+	}
+	oNext.onclick = function(){
+		num++;
+		if (num == arrURL.length) {
+			num = 0;
+		}
+		
+		Tab();
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+通关口令：
+<input type="text" id="text1">
+<input type="button" id="btn" value="验证">
+
+<script type="text/javascript">
+	var oText = document.getElementById('text1');
+	var oBtn = document.getElementById('btn');
+
+	oBtn.onclick = function(){
+		if (oText.value == '') {
+			alert('写点啥吧？'); 
+		}else if(oText.value == 'CSS'){
+			alert('你写的是'+oText.value+"，验证通过！");
+		}else{
+			alert('密码错误哦');
+		}
+	}
+</script>
+</body>
+</html>

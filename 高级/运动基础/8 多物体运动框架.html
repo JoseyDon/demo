@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>多物体运动框架</title>
+</head>
+<style type="text/css">
+	div{
+		width: 100px;
+		height: 50px;
+		background: red;
+		margin-bottom: 20px;
+	}
+</style>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<script type="text/javascript">
+var aDiv = document.getElementsByTagName('div');
+var i = 0;
+
+for (i = 0; i < aDiv.length; i++) {
+	aDiv[i].onmouseover = function(){
+		startMove(this,300);
+	}
+
+	aDiv[i].onmouseout = function(){
+		startMove(this,100);
+	}
+}
+
+function startMove(obj,iTarget){
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		var iSpeed = (iTarget - obj.offsetWidth)/8;
+		iSpeed = iSpeed > 0 ? Math.ceil(iSpeed):Math.floor(iSpeed);
+		document.title = iSpeed;
+
+		if (obj.offsetWidth == iTarget) {
+			clearInterval(obj.timer);
+		}else{
+			obj.style.width = obj.offsetWidth + iSpeed + 'px';
+		}
+	},30);
+}
+</script>
+</body>
+</html>

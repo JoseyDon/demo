@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#div1{
+			width: 500px;
+			height: 500px;
+			background: yellow;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<input type="button" id="show_btn" value="显示">
+<input type="button" id="hide_btn" value="隐藏">
+<div id="div1"></div>
+
+<script type="text/javascript">
+	window.onload = function(){
+		var oBtn1 = document.getElementById('show_btn');
+		var oBtn2 = document.getElementById('hide_btn');
+		var div1 = document.getElementById("div1");
+		oBtn1.onclick = show;
+		oBtn2.onclick = hide;
+
+		function show(){
+			div1.style.display = "block";
+		}
+		function hide(){
+			div1.style.display = "none";
+		}
+	}
+</script>
+</body>
+</html>

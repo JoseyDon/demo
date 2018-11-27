@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>模拟select 多选</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding:0;
+		list-style: none;
+		text-decoration: none;
+	}
+	a{
+		color: #000;
+		display: block;
+	}
+	#div1{
+		width: 250px;
+		height: 20px;
+		line-height: 20px;
+		border: 1px solid #fe6601;
+		padding: 5px;
+		margin: 20px auto 0 auto;
+	}
+	#ul1 { margin: 0 auto; width: 260px; line-height: 20px; border: 1px solid #fe6601; display: none;}
+	#ul1 li a { padding: 5px; }
+	#ul1 li a:hover { background: #fe6601; color: #fff; }
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<ul id="ul1">
+		<li><a href="javascript:;">宋体</a></li>
+		<li><a href="javascript:;">黑体</a></li>
+		<li><a href="javascript:;">楷体</a></li>
+		<li><a href="javascript:;">微软雅黑</a></li>
+		<li><a href="javascript:;">新宋体</a></li>
+		<li><a href="javascript:;">仿宋</a></li>
+	</ul>
+<script type="text/javascript">
+var oDiv = document.getElementById('div1');
+var oUl = document.getElementById('ul1');
+var aA = oUl.getElementsByTagName('li');
+var arr = [];
+document.onclick = function(){
+	oUl.style.display = 'none';
+}
+oDiv.onclick = function(ev){
+	var ev = ev||event;
+	ev.cancelBubble = true;
+	oUl.style.display = 'block';
+	selectOne();
+	document.onkeydown = selectSome();
+	document.onkeyup = function(){
+		document.onkeydown = null;
+	}
+}
+
+//单选
+function selectOne(ev){
+	var ev = ev||event;
+	ev.cancelBubble = true;
+	for (var i = 0; i < aA.length; i++) {
+	aA[i].onclick = function(){
+		if (this.flag) {
+			arr = [];
+			oDiv.innerHTML = "";
+			this.style.background = '';
+			oUl.style.display = 'none';
+			this.flag = false;
+			return;
+		}
+		this.flag = true;
+		arr = [];
+		arr.push(this.innerText);
+		oDiv.innerHTML = arr[0];
+		for (var i = 0; i < aA.length; i++) {
+			aA[i].style.background = '';
+		}
+		this.style.background = '#fe6601';
+		oUl.style.display = 'none';
+	}
+}
+}
+//多选
+function selectSome(ev){
+	var ev = ev||event;
+	ev.cancelBubble = true;
+	if (ev.shiftKey) {
+		for (var i = 0; i < aA.length; i++) {
+/*				if (this.mark) {
+
+					oDiv.innerHTML = arr.join(',');
+					this.style.background = '';
+					this.mark = false;
+					return;
+				}*/
+/*				this.mark = true;*/
+			aA[i].onclick = function(){
+				for (var j = 0; j < arr.length; j++) {
+					if(this.innerText == arr[j]){
+						this.style.background = '';
+						arr.splice(j,1);
+						oDiv.innerHTML = arr.join(',');
+						return;
+					}
+				}
+				arr.push(this.innerText);
+				oDiv.innerHTML = arr.join(',');
+				this.style.background = '#fe6601';
+
+			}
+		}
+	}
+}
+</script>
+</body>
+</html>       

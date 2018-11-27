@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>抖动</title>
+<script type="text/javascript" src="doMove.js"></script>
+<style type="text/css">
+ img{position: absolute;top: 20px;left: 300px;width: 300px;height: 200px;}
+</style>
+</head>
+<body>
+<img src="img/1.jpg">
+<script type="text/javascript">
+	var oImg = document.getElementsByTagName('img')[0];
+
+	oImg.onclick = function(){
+		shake(oImg,'left',function(){
+			shake(oImg,'top');
+		});
+	}
+
+	function shake(obj,attr,endFn){
+		var pos = parseInt(getStyle(obj,attr));
+		var num = 0;
+		var arr = [];//20,-20,18,-18......0;
+		for (var i = 20; i > 0 ; i-=2) {
+			arr.push(i,-i);
+		}
+		arr.push(0);
+
+		clearInterval(obj.shake);
+		obj.shake = setInterval(function(){
+			obj.style[attr] = pos + arr[num] + 'px';
+			num++;
+			if (num === arr.length) {
+				clearInterval(obj.shake);
+				endFn && endFn();
+			}
+		},10);
+	}
+</script>
+</body>
+</html>

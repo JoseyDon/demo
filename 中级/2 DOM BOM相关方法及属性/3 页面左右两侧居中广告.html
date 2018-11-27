@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>页面左右两侧居中广告</title>
+	<script type="text/javascript" src="getElementsByClassName.js"></script>
+	<style type="text/css">
+		#wrapper{
+			height: 2000px;
+			position: relative;
+		}
+		.ad{
+			width: 150px;
+			height: 400px;
+			background: red;
+			position: absolute;
+		}
+		.left{
+			left: 0;
+		}
+		.right{
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="wrapper">
+	<div class="ad left"></div>
+	<div class="ad right"></div>
+</div>
+<script type="text/javascript">
+	var aAd = getElementsByClassName(document,"div","ad");
+	function atMiddle(){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		for (var i = 0; i < aAd.length; i++) {
+			aAd[i].style.top = scrollTop + (document.documentElement.clientHeight)/2 - aAd[i].offsetHeight/2 + 'px';
+		}
+	}
+	atMiddle();
+
+	window.onscroll = atMiddle;
+	window.onresize = atMiddle;
+</script>
+</body>
+</html>       

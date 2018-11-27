@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>按钮控制图片上下滚动</title>
+<style type="text/css">
+	*{margin:0;padding: 0;}
+	li{list-style: none;}
+	body{background: #f1f1f1;}
+	#pic{	position: absolute;top: 50%;left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+	background: -webkit-linear-gradient(#f2f3f7, #e4e8ec);
+	background: -o-linear-gradient(#f2f3f7, #e4e8ec);
+	background: linear-gradient(#f2f3f7, #e4e8ec);
+	overflow: hidden;
+        }
+    #pic h2{
+box-shadow: 0 1px 2px #8b8b8b inset,0 -1px 0 #3d3d3d inset,0 -2px 3px #8b8b8b inset;
+background: -webkit-linear-gradient(top,#656565,#4c4c4c);
+background: -moz-linear-gradient(top,#656565,#4a4a4a);
+background: linear-gradient(top,#656565,#4a4a4a);
+font-size: 16px;
+height: 30px;
+width: 200px;
+line-height: 30px;
+padding-left: 10px;
+color: #fff;
+z-index: 1;
+position: relative;
+    }
+    #arrowUp{
+    	width: 200px;
+    	height: 30px;
+    	background: url('img/arrowUp.png')no-repeat center center #EFEFE7;
+    	 border:none;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+			z-index: 1;
+		position: absolute;
+
+    }
+    #arrowDown{
+    	width: 200px;
+    	height: 30px;
+    	background: url('img/arrowDown.png')no-repeat center center #EFEFE7;
+    	border: none;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+			z-index: 1;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+    }
+    #pic ul li h3{
+    	font-size: 14px;
+    	line-height: 28px;
+    }
+    #pic ul{
+			position: relative;
+			top: 30px;
+		}
+	#pic li {
+			border-bottom: 1px solid #A4A4A4;
+			position: relative;
+			padding-bottom: 5px;
+		}
+	#pic img {
+			max-width: 80px;
+			max-height: 60px;
+			position: absolute;
+			top: 5px;
+			right: 5px;
+		}
+	#pic p {
+			font-size: 12px;
+			width: 80px;
+		}
+	#pic .time {
+			padding-top: 10px;
+			color: gray;
+		}
+	.hover{background-color: #d8d5d5!important;}
+
+</style>
+</head>
+<body>
+	<div id="pic">
+			<h2>商品信息</h2>
+			<button id="arrowUp"></button>
+			<ul>
+			<li>
+				<h3>标题一</h3>
+				<p>Mac翻新产品<br/>iPod翻新产品</p>
+				<p class="time">12:35</p>
+				<img src="img/ad1.png" alt="">
+			</li>
+			<li>
+				<h3>标题二</h3>
+				<p>RMB5,780起<br/>最低降了30%</p>
+				<p class="time">21:29</p>
+				<img src="img/ad2.png" alt="">
+			</li>
+			<li>
+				<h3>标题三</h3>
+				<p>Mac完全解析</p>
+				<p class="time">22:38</p>
+				<img src="img/ad3.png" alt="">
+			</li>
+			<li>
+				<h3>标题四</h3>
+				<p>无线网络基础</p>
+				<p class="time">12:00</p>
+				<img src="img/ad4.png" alt="">
+			</li>
+			<li>
+				<h3>标题五</h3>
+				<p>从PC到Mac：<br/>基础知识</p>
+				<p class="time">23:12</p>
+				<img src="img/ad5.png" alt="">
+			</li>
+			<li>
+				<h3>标题六</h3>
+				<p>转移到Mac</p>
+				<p class="time">15:30</p>
+				<img src="img/ad6.png" alt="">
+			</li>
+			<li>
+				<h3>标题七</h3>
+				<p>各种Mac机</p>
+				<p class="time">3:23</p>
+				<img src="img/ad7.png" alt="">
+			</li>
+			<li>
+				<h3>标题八</h3>
+				<p>RMB348起<br/>最多降低了43%</p>
+				<p class="time">15:48</p>
+				<img src="img/ad8.png" alt="">
+			</li>
+		</ul>
+			<button id="arrowDown"></button>
+	</div>
+<script type="text/javascript">
+		var aButton = document.getElementsByTagName('button');
+		var oUl = document.getElementsByTagName('ul')[0];
+		var oUp = document.getElementById('arrowUp');
+		var oDown = document.getElementById('arrowDown');
+		var speed = 10;
+		var timer = null;
+
+		function getStyle(obj,attr){
+			return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+		}
+
+		for (var i = 0; i < aButton.length; i++) {
+			aButton[i].onmouseover = function(){
+				this.className = 'hover';
+			}
+			aButton[i].onmouseout = function(){
+				this.className = '';
+			}
+		}
+
+		oUp.onmousedown = function(){
+			timer = setInterval(function(){
+				if (parseInt(getStyle(oUl,'top')) < 30) {
+					oUl.style.top = parseInt(getStyle(oUl,'top')) + speed + 'px';
+				}
+			},50)
+		}
+
+		oUp.onmouseup = function(){
+			clearInterval(timer);
+		}
+
+		oDown.onmousedown = function(){
+			timer = setInterval(function(){
+				if (parseInt(getStyle(oUl,'top')) > -350) {
+					oUl.style.top = parseInt(getStyle(oUl,'top')) - speed + 'px';
+				}
+			},50)
+		}
+
+		oDown.onmouseup = function(){
+			clearInterval(timer);
+		}
+</script>
+</body>
+</html>

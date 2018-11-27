@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>属性写操作</title>
+</head>
+<body>
+<input type="text" id="text1" value="img/1.jpg">
+<input type="button" id="btn" value="确定">
+<br>
+<img id="img" src="img/1.jpg" width="500px">
+<script type="text/javascript">
+	var text1 = document.getElementById('text1');
+	var oBtn = document.getElementById('btn');
+	var img = document.getElementById('img');
+	oBtn.onclick = function(){
+		img.src = text1.value;
+	}
+</script>
+</body>
+</html>

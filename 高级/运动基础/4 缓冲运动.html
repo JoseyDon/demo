@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>缓冲运动</title>
+</head>
+<style type="text/css">
+	#div1{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		top: 100px;
+		left: 50px;
+	}
+</style>
+<body>
+<button onclick="move(500)">向前运动</button>
+<button onclick="move(50)">向后运动</button>
+<div id="div1"></div>
+<script type="text/javascript">
+var timer = null;
+	function move(target){
+		var div1 = document.getElementById('div1');
+		clearInterval(timer);
+		timer = setInterval(function(){
+			var speed = (target - div1.offsetLeft)/8;
+			if (speed > 0) {
+				speed = Math.ceil(speed);
+			}else{
+				speed = Math.floor(speed);
+			}
+			if (div1.offsetLeft == target) {//是否到达终点
+				clearInterval(timer);//到达终点
+			}else{
+				div1.style.left = div1.offsetLeft + speed + 'px';//没到终点
+			}
+			document.title = div1.style.left;
+		},30);
+	}
+</script>
+</body>
+</html>

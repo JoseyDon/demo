@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>百度文库评分</title>
+<style type="text/css">
+		*{margin: 0;padding: 0}
+		div{position: absolute;top: 50%;left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+                    }
+        span{font-size: 16px;color: gray;}
+		ul{display: inline-block;line-height: 20px;height: 20px;}
+		li{list-style: none;float: left;margin-right: 5px;}
+		li:last-child{margin-right: 0;}
+		img{width: 20px;height: 20px;}
+</style>
+</head>
+<body>
+	<div>
+		<span>总体评价：</span>
+		<ul></ul>
+		<span>打分</span>
+	</div>
+<script type="text/javascript">
+		var oUl = document.getElementsByTagName('ul')[0];
+		var aLi = oUl.getElementsByTagName('li');
+		var arrImg = ['img/nst.gif', 'img/nsg.gif', 'img/sth.gif', 'img/st.gif'];
+		var aImg = oUl.getElementsByTagName('img');
+		var oSpan = document.getElementsByTagName('span')[1];
+		var num  = 5;	//	星星个数
+		var x = 0;
+		var lastArrimg = [];
+		var lastSpan = '打分';
+		//初始化
+		for (var i = 0; i < num; i++) {
+			oUl.innerHTML += '<li><img src="img/nst.gif"></li>';
+		}
+
+		function rating(index,imgSrc){
+			for (var i = 0; i <= index; i++) {
+				aImg[i].src = imgSrc;
+			}
+			switch(index){
+				case 0 :
+						oSpan.innerHTML = '极差';
+						break;
+				case 1 :
+						oSpan.innerHTML = '很差';
+						break;
+				case 2 :
+						oSpan.innerHTML = '还行';
+						break;
+				case 3 :
+						oSpan.innerHTML = '不错';
+						break;
+				case 4 :
+						oSpan.innerHTML = '很棒';
+						break;
+			}
+		}
+
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].index = i;
+			aLi[i].onmouseover = function(){
+				x = this.index;
+				for (var i = 0; i < aImg.length; i++) {
+					lastArrimg[i] = aImg[i].src;
+				}
+				rating(aImg.length-1,arrImg[0]);
+				if (x<2) {
+					rating(x,arrImg[1]);
+				}else{
+					rating(x,arrImg[2]);
+				}
+			}
+			aLi[i].onmouseout = function(){
+				for (var i = 0; i < aImg.length; i++) {
+					aImg[i].src = lastArrimg[i];
+				}
+				oSpan.innerHTML = lastSpan;
+			}
+			aLi[i].onclick = function(){
+				x = this.index;
+				rating(aImg.length-1,arrImg[0]);
+				if (x < 2) {
+					rating(x,arrImg[1]);
+				}else{
+					rating(x,arrImg[3]);
+				}
+				for (var i = 0; i < aImg.length; i++) {
+					lastArrimg[i] = aImg[i].src;
+				}
+				lastSpan.innerHTML = oSpan.innerHTML;
+			}
+		}
+</script>
+</body> 
+</html>

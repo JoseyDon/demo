@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片时钟实例</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	body{background: #f1f1f1;}
+	div{position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 280px;
+        font-size: 20px;
+        color: gray;
+    }
+    input{
+    	color: #8c96a0;
+text-shadow:1px 1px 1px #fff;
+border:1px solid #dce1e6;
+box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+background: -webkit-linear-gradient(top,#f2f3f7,#e4e8ec);
+background: -moz-linear-gradient(top,#f2f3f7,#e4e8ec);
+background: linear-gradient(top,#f2f3f7,#e4e8ec);
+width: 200px;
+height: 30px;
+margin-top: 20px;
+text-align: center;
+    }
+    button{
+    	width: 100px;
+    	height: 50px;
+    	font-size: 18px;
+    	margin-top: 20px;
+    	margin-left: 70px;
+    	border:1px solid #333;
+box-shadow: 0 1px 2px #8b8b8b inset,0 -1px 0 #3d3d3d inset,0 -2px 3px #8b8b8b inset;
+background: -webkit-linear-gradient(top,#656565,#4c4c4c);
+background: -moz-linear-gradient(top,#656565,#4a4a4a);
+background: linear-gradient(top,#656565,#4a4a4a);
+    }
+	</style>
+</head>
+<body>
+	<div>
+		距离：<input type="text" value="September 16,2018,22:0:0">
+		还有：<input type="text">
+		<button>开始倒计时</button>
+	</div>
+	<script>
+	var iNow = null
+	/*var iNew = new Date('September 16,2018,22:0:0');*/
+	var iNew = null
+	var t = 0;
+	var str = '';
+	var timer = null;
+	/*var t = Math.floor((iNew - iNow)/1000);*/		// 毫秒-秒
+	/*var str = Math.floor(t/86400)+'天' + Math.floor(t%86400/3600) + '时' + Math.floor(t%86400%3600/60) + '分' + t%60 + '秒';*/
+
+	var aInput = document.getElementsByTagName('input');
+	var oBtn = document.getElementsByTagName('button')[0];
+	
+
+	oBtn.onclick = function(){
+		iNew = new Date(aInput[0].value);
+		clearInterval(timer);
+		timer = setInterval(function(){
+			iNow = new Date();
+			t = Math.floor((iNew - iNow)/1000);
+			if (t>=0) {
+				str = Math.floor(t/86400)+'天' + Math.floor(t%86400/3600) + '时' + Math.floor(t%86400%3600/60) + '分' + t%60 + '秒';
+				aInput[1].value = str;
+			}else{
+				str = '到啦~';
+				aInput[1].value = str;
+			}
+		},1000);
+	}
+ 	</script>
+</body>
+</html>

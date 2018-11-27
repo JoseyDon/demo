@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>拖动回放</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding:0;
+		list-style: none;
+		text-decoration: none;
+	}
+	#div1{
+		width: 100px;
+		height: 100px;
+		border: 1px solid;
+		position: absolute;
+		background: red;
+	}
+	</style>
+</head>
+<body>
+	<button>回放</button>
+	<div id="div1"></div>
+<script type="text/javascript">
+var oBtn = document.getElementsByTagName('button')[0];
+var oDiv = document.getElementById('div1');
+var arrL = [];
+var arrT = [];
+
+oDiv.onmousedown = function(ev){
+	var ev = ev||event;
+	var disX = ev.clientX - oDiv.offsetLeft;
+	var disY = ev.clientY - oDiv.offsetTop;
+	if (oDiv.setCapture) {
+		oDiv.setCapture();
+	}
+
+	document.onmousemove = function(ev){
+		var ev = ev||event;
+		var L = ev.clientX - disX;
+		var T = ev.clientY - disY;
+		
+		if (L < 100 ) {
+			L = 0;
+		}else if (L>document.documentElement.clientWidth - oDiv.offsetWidth) {
+			L = document.documentElement.clientWidth - oDiv.offsetWidth;
+		}
+
+		if (T < 0 ) {
+			T = 0;
+		}else if (T>document.documentElement.clientHeight - oDiv.offsetHeight) {
+			T = document.documentElement.clientHeight - oDiv.offsetHeight;
+		}
+
+		arrL.push(L);
+		arrT.push(T);
+
+		oDiv.style.left = L+'px';
+		oDiv.style.top = T+'px';
+	}
+
+	document.onmouseup = function(){
+		document.onmousemove = document.onmouseup = null;
+		if (oDiv.releaseCapture) {
+			oDiv.releaseCapture();
+		}
+	}
+	return false;
+}
+
+oBtn.onclick = function(){
+	var i = 0;
+	arrL.reverse();
+	arrT.reverse();
+	oBtn.timer = setInterval(function(){
+		oDiv.style.left = arrL[i]+'px';
+		oDiv.style.top = arrT[i]+'px';
+		i++;
+		if (i==arrL.length) {
+			clearInterval(oBtn.timer);
+			arrL = [];
+			arrT = [];
+		}
+	},20);
+}
+</script>
+</body>
+</html>       

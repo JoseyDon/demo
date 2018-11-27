@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>this应用1</title>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<script type="text/javascript">
+	var aBtn = document.getElementsByTagName('button');
+	for (var i = 0; i < aBtn.length; i++) {
+		aBtn[i].onclick = function(){
+			//this.style.background = 'yellow';//this => aBtn[i]
+			fn1();
+		}
+	}
+	function fn1(){
+		this.style.background = 'yellow'; // this =>window
+	}
+</script>
+</body>
+</html>

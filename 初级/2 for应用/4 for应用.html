@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<ul id="list">
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<script type="text/javascript">
+	var oUl = document.getElementById('list');
+	var aLi = oUl.getElementsByTagName('li');
+	var arr =['今天','明天','后天'];
+	var num = arr.length;//记录长度 这样就不用每次找数组长度了
+	for (var i = 0; i < num; i++) {
+		aLi[i].innerHTML = arr[i];
+		aLi[i].onclick = function(){
+			//alert(i); i=>3作用域问题
+		}
+	}
+</script>
+</body>
+</html>

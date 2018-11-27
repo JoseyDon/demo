@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>留言板</title>
+</head>
+<style type="text/css">
+	.active{
+		background: red;
+	}
+</style>
+<body>
+	<input type="text">
+	<button>添加</button>
+	<button>批量删除</button>
+	<ul></ul>
+</body>
+<script type="text/javascript">
+	var oInput = document.getElementsByTagName('input')[0];
+	var add = document.getElementsByTagName('button')[0];
+	var remove = document.getElementsByTagName('button')[1];
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var flag = true;
+	add.onclick = function(){
+		var oLi = document.createElement('li');
+		oLi.innerHTML = oInput.value;
+			if (oUl.children[0]) {
+				oUl.insertBefore(oLi,oUl.children[0]);
+				if (oUl.children.length > 5) {
+					oUl.removeChild(oUl.children[5]);
+				}
+			}else{
+				oUl.appendChild(oLi);
+			}
+
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].onclick = function(){
+				if (flag) {
+					this.style.background = 'yellow';
+					flag = !flag;
+					this.mark = "1";
+				}else{
+					this.style.background = '';
+					this.mark = "";
+					flag = !flag;
+				}
+			}
+		}
+	}
+
+
+
+	remove.onclick = function(){
+		for (var i = 0; i < aLi.length; i++) {
+			if (aLi[i].mark) {
+				oUl.removeChild(aLi[i]);
+			}
+		}
+	}
+
+</script>
+</html>

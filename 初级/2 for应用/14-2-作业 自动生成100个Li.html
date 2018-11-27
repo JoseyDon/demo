@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自动生成100个li</title>
+	<style type="text/css">
+		#div1{position: relative;margin-top: 10px;}
+		li{width: 50px;height: 50px;list-style-type: none;border: 1px solid #ccc;position: absolute;top: 0;left: 0;font-size: 30px;text-align: center;line-height: 50px;color: #fff;}
+	</style>
+</head>
+<body>
+<button id="btn">自动生成100个Li</button>
+<div id="div1"></div>
+<script type="text/javascript">
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+	var aLi = document.getElementsByTagName('li');
+	var aColor = ['red','yellow','blue','green'];
+	var flag = true;
+	var num = 100;
+	oBtn.onclick = function(){
+		if (flag) {
+			//生成num个li
+			for (var i = 0; i < num; i++) {
+				oDiv.innerHTML += '<li>'+i+'</li>';
+			}
+			//多个li的定位问题
+			for (var i = 0; i < 100; i++) {
+				aLi[i].style.left = 10+(i%10)*60+'px';
+				aLi[i].style.top = 50 +parseInt(i/10)*60+'px';
+				aLi[i].style.background = aColor[i%aColor.length];
+			}
+			flag = false;
+		}
+	}
+</script>
+</body>
+</html>

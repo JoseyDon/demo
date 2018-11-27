@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片时钟实例（翻页）</title>
+	<script type="text/javascript" src="doMove.js"></script>
+	<style>
+	*{margin: 0;padding: 0;}
+	body{background: #f1f1f1;}
+	li{list-style: none;}
+	#clock{
+		position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 1000px;
+	}
+	li{position: relative;width: 100px;height: 140px;display: inline-block;overflow: hidden;}
+			img {
+			border: 0;
+			width: 100px;
+			height: 140px;
+		}
+		ul {
+			margin: 50px auto;
+			width: 800px;
+			font-size: 0;
+		}
+		li div {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="clock">
+		<ul>
+			<li>
+				<div>
+					<img src="img/0.jpg">
+					<img src="img/0.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/0.jpg">
+					<img src="img/0.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/colon.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/0.jpg">
+					<img src="img/0.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/0.jpg">
+					<img src="img/0.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/colon.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/0.jpg">
+					<img src="img/0.jpg">
+				</div>
+			</li>
+			<li>
+				<div>
+					<img src="img/0.jpg">
+					<img src="img/0.jpg">
+				</div>
+			</li>
+		</ul>
+	</div>
+	<script>
+	var oClock = document.getElementById('clock');
+	var aLi = oClock.getElementsByTagName('li');
+
+	setInterval(fnTime,1000);
+	fnTime();
+	function fnTime(){
+		var myTime = new Date();
+		var iHours = myTime.getHours();
+		var iMin = myTime.getMinutes();
+		var iSec = myTime.getSeconds();
+		var str = toTwo(iHours) + ':' +toTwo(iMin) + ':' + toTwo(iSec);
+
+		function fnFlip(li,index){
+			var oDiv = li.getElementsByTagName('div')[0];
+			var aImg = li.getElementsByTagName('img');
+
+			if (str.charAt(index) == ':') {
+				aImg[0].src = 'img/colon.jpg';
+				setTimeout(function(){
+					aImg[0].src = 'img/colon2.jpg';
+				},500);
+			}else{
+				aImg[1].src = 'img/'+str.charAt(index)+'.jpg';
+				if (aImg[0].src != aImg[1].src) {
+					doMove(oDiv,'top',10,-aImg[0].offsetWidth,function(){
+						aImg[0].src = aImg[1].src;
+						oDiv.style.top = 0;
+					})
+				}
+			}
+		};
+
+		for (var i = 0; i < aLi.length; i++) {
+			fnFlip(aLi[i],i);
+		}
+	}
+
+	function toTwo(n){
+		return n < 10? '0'+n :''+n;
+	}
+	</script>
+</body>
+</html>

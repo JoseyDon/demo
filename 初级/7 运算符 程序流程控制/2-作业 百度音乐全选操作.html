@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>百度音乐全选操作</title>
+<style type="text/css">
+	*{margin:0;padding: 0;}
+	li{list-style: none;}
+	body{background: #f1f1f1;}
+	#music{position: absolute;top: 50%;left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 150px;
+            border: 1px solid #ccc;
+            color: #000;
+            font-size: 12px;
+        }
+    #music ul {margin: 5px;}
+    #content li{width: 390px;}
+    #content li input {margin-right: 10px;}
+    #content li span {width: 150px;display: inline-block;}
+    #control{border-top: 1px solid #ccc;margin: 5px;}
+    #control input{margin-top: 10px;margin-right:10px;float: left;}
+    #control label{margin-top:5px;margin-right:25px;float: left;}
+    #control ul{width: 400px;height: 30px;line-height: 30px;}
+    #control li{float: left;width: 70px;height: 18px;line-height: 18px;}
+    #control button{padding-left: 16px;color: #8c96a0;
+text-shadow:1px 1px 1px #fff;
+border:1px solid #dce1e6;
+box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+background: -webkit-linear-gradient(top,#f2f3f7,#e4e8ec);
+background: -moz-linear-gradient(top,#f2f3f7,#e4e8ec);
+background: linear-gradient(top,#f2f3f7,#e4e8ec);width: 60px;height: 20px;}
+    #control .disabled{opacity: 0.5;}
+    #control .download button{background: url('img/download.png')no-repeat;background-size: 16px 16px;}
+    #control .add button{background: url('img/add.png')no-repeat;background-size: 16px 16px;}
+    #control .delete button{background: url('img/delete.png')no-repeat;background-size: 16px 16px;}
+
+</style>
+</head>
+<body>
+		<div id="music">
+			<ul id="content">
+				<li>
+					<input type="checkbox">
+					<span>私奔</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>北京北京</span>
+					<span>梁博,黄勇</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>私奔</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>我爱你中国</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>花火</span>
+					<span>梁博</span>
+				</li>
+				<li>
+					<input type="checkbox">
+					<span>爱有你才完美</span>
+					<span>梁博,那英</span>
+				</li>
+			</ul>
+			<div id="control">
+				<input type="checkbox" id="all">
+				<label for="all">全选</label>
+				<ul>
+					<li class="download"><button disabled="disabled" class="disabled">下载</button></li>
+					<li class="add"><button disabled="disabled" class="disabled">添加</button></li>
+					<li class="delete"><button disabled="disabled" class="disabled">删除</button></li>
+				</ul>
+			</div>
+		</div>
+<script type="text/javascript">
+	var oContent = document.getElementById('content');
+	var aLi = oContent.getElementsByTagName('li');
+	var oInput = document.getElementById('all');
+	var oControl = document.getElementById('control');
+	var aButton = oControl.getElementsByTagName('button');
+	var aInput = [];
+	var lastColor = null;
+
+	for (var i = 0; i < aLi.length; i++) {
+		aInput.push(aLi[i].getElementsByTagName('input')[0]);
+
+		if (i%2 == 0) {
+			aLi[i].style.background = '#ccf1f1';
+		}else if (i%2 == 1) {
+			aLi[i].style.background = '#f0f1cc';
+		}
+
+		aLi[i].onmouseover = function(){
+			lastColor = this.style.background;
+			this.style.background = '#ccc';
+		}
+		aLi[i].onmouseout =  function(){
+			this.style.background = lastColor;
+		}
+	}
+
+
+	 oInput.onclick =function(){
+			if (oInput.checked == false) {
+				for (var i = 0; i < aInput.length; i++) {
+					aInput[i].checked = false; 
+				}
+				for (var i = 0; i < aButton.length; i++) {
+					aButton[i].disabled = 'disabled';
+					aButton[i].className = 'disabled';
+				}
+			}else if (oInput.checked == true) {
+				for (var i = 0; i < aInput.length; i++) {
+					aInput[i].checked = true; 
+				}
+				for (var i = 0; i < aButton.length; i++) {
+					aButton[i].removeAttribute('disabled');
+					aButton[i].className = '';
+
+				}
+		}
+}
+</script>
+</body> 
+</html>

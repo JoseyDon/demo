@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>分享到</title>
+</head>
+<style type="text/css">
+	#div1{
+		width: 100px;
+		height: 200px;
+		background: #ccc;
+		position: absolute;
+		left: -90px;
+	}
+	#div1 span{
+		width: 20px;
+		height: 60px;
+		line-height: 20px;
+		text-align: center;
+		background: yellow;
+		position: absolute;
+		left: 100px;
+		top: 70px;
+	}
+</style>
+<body style="height:2000px">
+<div id="div1">
+	<span>分享到</span>
+</div>
+<script type="text/javascript">
+var timer = null;
+var timer2 = null;
+var div1 = document.getElementById('div1');
+div1.onmouseover = function(){move(0);}
+div1.onmouseout = function(){move(-90);}
+
+function move(target){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			var speed = (target - div1.offsetLeft)/8;
+			if (speed > 0) {
+				speed = Math.ceil(speed);
+			}else{
+				speed = Math.floor(speed);
+			}
+			if (div1.offsetLeft == target) {//是否到达终点
+				clearInterval(timer);//到达终点
+			}else{
+				div1.style.left = div1.offsetLeft + speed + 'px';//没到终点
+			}
+		},30);
+}
+
+//滚动
+window.onscroll = function(){
+	var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+	var t = scrollTop + (document.documentElement.clientHeight - div1.offsetHeight)/2;
+	//div1.style.top = t + 'px';
+	start(parseInt(t));
+}
+
+function start(target){
+		clearInterval(timer2);
+		timer2 = setInterval(function(){
+			var speed = (target - div1.offsetTop)/5;
+			if (speed > 0) {
+				speed = Math.ceil(speed);
+			}else{
+				speed = Math.floor(speed);
+			}
+			if (div1.offsetTop == target) {//是否到达终点
+				clearInterval(timer2);//到达终点
+			}else{
+				div1.style.top = div1.offsetTop + speed + 'px';//没到终点
+			}
+		},30);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>条件判断</title>
+</head>
+<body>
+<input type="button" id="reduce" value="-">
+<input type="button" id="add" value="+">
+<p id="p1" style="font-size:16px">例如：书写或喷画相同内容（如：数字、图形）的时候，会在一些（纸制、木制、金属制的）板子上抠出内容形状，将该板子遮挡住物体上，之后在上面喷色着色。将该板子拿下后图形、数字等即印上了。反观那块板子，抠出的空白区域形状也就是选区了，而未被抠出的区域也就是留在上面的板子，所以与选区相对的，选框外部被称之为蒙版。</p>
+
+<script type="text/javascript">
+	var reduce = document.getElementById('reduce');
+	var add = document.getElementById('add');
+	var oP = document.getElementById('p1');
+	var num = 16;
+	reduce.onclick = function(){
+		if (num>12) {
+		num--;
+		oP.style.fontSize = num + "px";
+		}
+	}
+	add.onclick = function(){
+		if (num<22) {
+		num++;
+		oP.style.fontSize = num + "px";
+		}
+	}
+</script>
+</body>
+</html>

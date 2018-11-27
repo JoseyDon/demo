@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>自定义属性 自定义一组开关应用</title>
+<style type="text/css">
+	li{list-style: none;width: 150px;height: 125px;background-image: url(img/1.png);background-size:100%;float: left;margin-right: 20px;}
+</style>
+</head>
+<body>
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+<script type="text/javascript">
+	var aLi = document.getElementsByTagName('li');
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].isOpen = true;
+		aLi[i].onclick = function(){
+			if (this.isOpen){
+				this.style.backgroundImage = 'url(img/2.png)';
+				this.isOpen = false;
+			}else{
+				this.style.backgroundImage = 'url(img/1.png)';
+				this.isOpen = true;
+			}
+		}
+	}
+</script>
+</body>
+</html>

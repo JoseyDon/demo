@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>选择筛选</title>
+	<style type="text/css">
+	dd{cursor: pointer;}
+	</style>
+</head>
+<body>
+	<dl>
+		<dt>地区</dt>
+		<dd>深圳</dd>
+		<dd>杭州</dd>
+		<dd>北京</dd>
+		<dd>重庆</dd>
+	</dl>
+	<dl>
+		<dt>职位</dt>
+		<dd>产品经理</dd>
+		<dd>前端工程师</dd>
+		<dd>后端工程师</dd>
+	</dl>
+	<dl>
+		<dt>薪资</dt>
+		<dd>10k</dd>
+		<dd>11k</dd>
+		<dd>12k</dd>
+	</dl>
+	<div id="div1"></div>
+<script type="text/javascript">
+var oDiv = document.getElementById('div1');
+var aDl = document.getElementsByTagName('dl');
+var loc = pos = wage = '';
+
+for (var i = 0; i < aDl.length; i++) {
+	fn(i);
+}
+
+function fn(n){
+	var aDd = aDl[n].getElementsByTagName('dd');
+	for (var i = 0; i < aDd.length; i++) {
+		aDd[i].onclick = function(){
+			switch(n){
+				case 0:
+				loc = this.innerHTML + ' ';
+				break;
+
+				case 1:
+				pos = this.innerHTML + ' ';
+				break;
+
+				case 2:
+				wage = this.innerHTML + ' ';
+				break;
+			}
+			oDiv.innerHTML = loc + pos + wage;
+		}
+	}
+}
+</script>
+</body>
+</html>       

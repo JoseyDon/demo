@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css"></style>
+</head>
+<body>
+<script type="text/javascript">
+	alert(fn(2,5));
+	alert(fn(6,2));
+	function fn(x,y){
+		if (x>y){
+			var num = x;
+			x = y;
+			y = num;
+		}
+		var arr = [];
+		for (var i = x; i <= y; i++) {
+			arr.push(i);
+		}
+		return arr;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串加密</title>
+	<style>
+		body{background: #f1f1f1}
+		div{
+					position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 400px;
+        height: 200px;
+		}
+		input {
+			width: 200px;
+			height: 38px;
+			line-height: 38px;
+		}
+		button{
+			border:1px solid #64c878;
+box-shadow: 0 1px 2px #b9ecc4 inset,0 -1px 0 #6c9f76 inset,0 -2px 3px #b9ecc4 inset;
+background: -webkit-linear-gradient(top,#90dfa2,#84d494);
+background: -moz-linear-gradient(top,#90dfa2,#84d494);
+background: linear-gradient(top,#90dfa2,#84d494);
+width: 140px;
+line-height: 38px;
+text-align: center;
+font-weight: bold;
+color: #fff;
+text-shadow:1px 1px 1px #333;
+border-radius: 5px;
+margin:0 20px 20px 0;
+position: relative;
+overflow: hidden;
+		}
+		p{
+			color: red;
+			font-size: 20px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div>
+			<input type="text">
+			<button>加密</button>
+			<p></p>
+	</div>
+	<script>
+		var oInput = document.getElementsByTagName('input')[0];
+		var oBtn = document.getElementsByTagName('button')[0];
+		var oP = document.getElementsByTagName('p')[0];
+
+		oBtn.onclick = function(){
+			var str = oInput.value;
+			var str2 = '';
+			for (var i = 0; i < str.length; i++) {
+				str2 += String.fromCharCode(str.charCodeAt(i) + 520) + ':';
+			}
+			oP.innerHTML = str2;
+		}
+	</script>
+</body>
+</html>

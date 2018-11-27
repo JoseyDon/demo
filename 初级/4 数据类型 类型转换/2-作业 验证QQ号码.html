@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>验证QQ号码</title>
+<style type="text/css">
+.warn{
+	color: red;
+}
+</style>
+</head>
+<body>
+<div>
+	<span>请输入QQ号码：</span>
+	<input type="text" value="" id="qq">
+	<button>判断</button>
+</div>
+<div id="div1">
+	1.有没有输入
+</div>
+<div id="div2">
+	2.输入的是不是数字
+</div>
+<div id="div3">
+	3.不能有0在前面
+</div>
+<div id="div4">
+	4.不能是小数
+</div>
+<div id="div5">
+	5.输入的数字必须在5位以上、10位以内
+</div>
+<script type="text/javascript">
+	var qq = document.getElementById("qq");
+	var btn = document.getElementsByTagName('button')[0];
+	var div1 = document.getElementById('div1');
+	var div2 = document.getElementById('div2');
+	var div3 = document.getElementById('div3');
+	var div4 = document.getElementById('div4');
+	var div5 = document.getElementById('div5');
+	btn.onclick = function(){
+		//	1.有没有输入
+		if (qq.value == '') {
+			div1.className = 'warn';
+		//	2.输入的是不是数字
+		}else if (isNaN(qq.value)) {
+			div2.className = 'warn';
+		//	3.不能有0在前面
+		}else if (qq.value.charAt(0) == '0' ) {
+			div3.className = 'warn';
+		//	4.不能是小数
+		}else if (parseInt(qq.value) != parseFloat(qq.value)) {
+			div4.className = 'warn';
+		//	5.输入的数字必须在5位以上、10位以内
+		}else if (qq.value.length < 5 || qq.value.length > 10) {
+			div5.className = 'warn';
+		}else {
+			div1.className = '';
+			div2.className = '';
+			div3.className = '';
+			div4.className = '';
+			div5.className = '';
+		}
+		
+	}
+</script>
+</body>
+</html>

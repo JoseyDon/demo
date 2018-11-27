@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>循环遍历二维数组 嵌套元素</title>
+</head>
+<body>
+<ul id="list">
+	<li>
+		<h2>我的好友</h2>
+		<ul>
+			<li>张三</li>
+			<li>李四</li>
+			<li>六一</li>
+		</ul>
+	</li>
+	<li>
+		<h2>我的坏友</h2>
+		<ul>
+			<li>王五</li>
+			<li>狗蛋</li>
+		</ul>
+	</li>
+	<li>
+		<h2>黑名单</h2>
+		<ul>
+			<li>笨蛋</li>
+		</ul>
+	</li>
+</ul>
+<script type="text/javascript">
+//循环遍历二维数组的方法
+	var arr = [
+	[1,2,3],
+	[4,5,6],
+	[7,8,9]
+	];
+	// arr[1][2]
+
+	for (var i = 0; i < arr.length; i++) {
+		//arr[i]
+		for (var j = 0; j < arr[i].length; j++) {
+			alert(arr[i][j]);
+		}
+	}
+//找到body中我的好友中的li
+	var oList = document.getElementById('list');
+	var aUl = oList.getElementsByTagName('ul');
+	var len = aUl.length;
+	var aLi = null;
+	for (var i = 0; i < len; i++) {
+		aLi = aUl[i].getElementsByTagName('li');
+		for (var j = 0; j < aLi.length; j++) {
+			aLi[j].style.border = "1px solid red";
+		}
+	}
+</script>
+</body>
+</html>

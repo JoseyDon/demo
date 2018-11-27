@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>自动轮换选项卡</title>
+<style type="text/css">
+	*{margin:0;padding: 0;}
+	li{list-style: none;}
+	body{background: #f1f1f1;}
+	#pic{	position: absolute;top: 50%;left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 350px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+	background: -webkit-linear-gradient(#f2f3f7, #e4e8ec);
+	background: -o-linear-gradient(#f2f3f7, #e4e8ec);
+	background: linear-gradient(#f2f3f7, #e4e8ec);
+        }
+    #pic button{background: #e5dede;border-radius: 5px;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+			border: 1px solid #ccc;width: 100px;height: 30px;color: gray;margin: 15px}
+	#pic img{width: 250px;height: 250px;float: left;margin-left: 15px;}
+	#pic ul{width: 100px;float: left;margin-left: 20px;}
+	#pic ul li{background: #e5dede;border-radius: 5px;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+			border: 1px solid #ccc;width: 60px;height: 30px;color: gray;text-align: center;line-height: 30px;margin-bottom: 10px;}
+	#pic .hover{box-shadow: 0 1px 2px #8b8b8b inset,0 -1px 0 #3d3d3d inset,0 -2px 3px #8b8b8b inset;
+background: -webkit-linear-gradient(top,#656565,#4c4c4c);
+background: -moz-linear-gradient(top,#656565,#4a4a4a);
+background: linear-gradient(top,#656565,#4a4a4a);
+	}
+	#pic ul:last-child{display: none;}
+</style>
+</head>
+<body>
+	<div id="pic">
+		<button class="hover">菜单一</button>
+		<button>菜单二</button>
+		<img src="img/loader_ico.gif" />
+		<ul>
+			<li class="hover">图片一</li>
+			<li>图片二</li>
+			<li>图片三</li>
+		</ul>
+		<ul style="display:none;">
+			<li class="hover">图片四</li>
+			<li>图片五</li>
+		</ul>
+	</div>
+<script type="text/javascript">
+	var aLi = document.getElementsByTagName('li');
+	var aButton = document.getElementsByTagName('button');
+	var aUl = document.getElementsByTagName('ul');
+	var oImg = document.getElementsByTagName('img')[0];
+	var num = 0;
+	var x = 0;
+	var arrImg = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
+	var timer = null;
+
+	for (var i = 0; i < aButton.length; i++) {
+		aButton[i].index = i;
+		aButton[i].onclick = function(){
+			clearInterval(timer);
+			aotuPlay();
+			for (var i = 0; i < aButton.length; i++) {
+				aButton[i].className = 'block';
+				aUl[i].style.display = 'none';
+			}
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].className = '';
+			}
+			num = this.index;
+			this.className = 'hover';
+			aUl[num].style.display = 'block';
+
+			if (num == 0 ) {
+				x = 0;
+				oImg.src = arrImg[x];
+				aLi[x].className = 'hover';
+			}else{
+				x = 3;
+				oImg.src = arrImg[x];
+				aLi[x].className = 'hover';
+			}
+		}
+	}
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].index = i;
+		aLi[i].onclick  = function(){
+			x = this.index;
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].className = '';
+			}
+			this.className = 'hover';
+			oImg.src = arrImg[x];
+		}
+	}
+
+	function Tab(){
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].className = '';
+		}
+		oImg.src = arrImg[x];
+		aLi[x].className = 'hover';
+/*		if (aLi[3].className == 'hover') {
+			aUl[0].style.display = 'none';
+			aUl[1].style.display = 'block';
+			aButton[0].className = '';
+			aButton[1].className = 'hover';
+		}else if (aLi[0].className =='hover') {
+			aUl[1].style.display = 'none';
+			aUl[0].style.display = 'block';
+			aButton[0].className = 'hover';
+			aButton[1].className = '';
+		}*/
+	}
+	Tab();
+
+	function aotuPlay(){
+		timer = setInterval(function(){
+			x++;
+			x%=aLi.length;
+			Tab();
+		},2000)
+	}
+	aotuPlay();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>键盘控制div移动</title>
+	<style type="text/css">
+	#div1{
+		width: 100px;
+		height: 100px;
+		background: red;
+		border: 1px solid;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+<script type="text/javascript">
+var oDiv = document.getElementById('div1');
+var key = {left:null,top:null,right:null,bottom:null};
+setInterval(function(){
+	if (key.left) {
+		oDiv.style.left = oDiv.offsetLeft - 20 + 'px';
+	}
+	if (key.top) {
+		oDiv.style.top = oDiv.offsetTop - 20 + 'px';
+	}
+	if (key.right) {
+		oDiv.style.left = oDiv.offsetLeft + 20 + 'px';
+	}
+	if (key.bottom) {
+		oDiv.style.top = oDiv.offsetTop + 20 + 'px';
+	}
+},20);
+
+document.onkeydown = function(ev){
+	var ev = ev||event;
+	switch(ev.keyCode){
+		case 37:
+		key.left = true;
+		break;
+
+		case 38:
+		key.top = true;
+		break;
+
+		case 39:
+		key.right = true;
+		break;
+
+		case 40:
+		key.bottom = true;
+		break;
+		
+	}
+}
+
+document.onkeyup = function(ev){
+	var ev = ev||event;
+	switch(ev.keyCode){
+		case 37:
+		key.left = false;
+		break;
+
+		case 38:
+		key.top = false;
+		break;
+
+		case 39:
+		key.right = false;
+		break;
+
+		case 40:
+		key.bottom = false;
+		break;
+		
+	}
+}
+</script>
+</body>
+</html>       

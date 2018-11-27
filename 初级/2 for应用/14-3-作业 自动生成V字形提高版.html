@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>自动生成一个v字型</title>
+	<style type="text/css">
+		#div1{position: relative;margin-top: 10px;}
+		li{width: 50px;height: 50px;list-style-type: none;border: 1px solid #ccc;position: absolute;top: 0;left: 0;font-size: 30px;text-align: center;line-height: 50px;color: #fff;display: none;background: red;}
+	</style>
+</head>
+<body>
+<button id="btn">自动生成一个v字型</button>
+<div id="div1"></div>
+<script type="text/javascript">
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+	var aLi = document.getElementsByTagName('li');
+	var type = 1;
+	var num = 5;
+
+	//生成num个li
+	for (var i = 0; i < num; i++) {
+		oDiv.innerHTML += '<li>'+i+'</li>';
+	}
+	oBtn.onclick = function(){
+		switch(type){
+			case 1:
+			for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.left = 10 + 50 * i + "px";
+                    aLi[i].style.top = Math.abs(i- parseInt(aLi.length / 2 )) *50 + "px";
+                    aLi[i].style.display = "block";
+                }
+                type++;
+                break;
+			case 2:
+			 for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.top = 10 + 50 * i + "px";
+                    if (i > 2) {
+                        aLi[i].style.left = (aLi.length - (i + 1)) * 50 + "px";
+                    } else {
+                        aLi[i].style.left = i * 50 + "px";
+                    }
+                    aLi[i].style.display = "block";
+                }
+                type++;
+                break;
+			case 3:
+			 for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.left = 10 + 50 * i + "px";
+                    if (i > 2) {
+                        aLi[i].style.top = (aLi.length - (i + 1)) * 50 + "px";
+                    } else {
+                        aLi[i].style.top = i * 50 + "px";
+                    }
+                    aLi[i].style.display = "block";
+                }
+                type++;
+                break;
+			case 4:
+			for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].style.top = 10 + 50 * i + "px";
+                    aLi[i].style.left = Math.abs(i- parseInt(aLi.length / 2 )) *50 + "px";
+                    aLi[i].style.display = "block";
+                }
+                type=1;
+                break;
+            default:
+                break;
+		}
+	}
+</script>
+</body>
+</html>

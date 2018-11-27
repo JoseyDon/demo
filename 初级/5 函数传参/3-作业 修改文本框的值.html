@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>修改文本框的值</title>
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	div{width: 500px;height: 300px;}
+	h2{background: #6BA542;color: white;font-size: 16px;line-height: 30px;font-weight: bold;vertical-align: middle;text-indent: 20px;}
+	li{list-style: none;border-bottom: 1px solid #eee;line-height: 40px;}
+	li p {display: inline-block;line-height: 40px;text-indent: 20px;padding-right: 5px;font-size: 16px;color: gray;}
+	input{margin-left: 16px;line-height: 22px;vertical-align: middle;font-size: 16px;padding: 0 2px;}
+	img{width: 16px;height: 16px;cursor: pointer;}
+	li span{color: #6BA542;font-size: 16px;font-weight: bold;padding: 0 3px;cursor: pointer;}
+	.hide{display: none;}
+</style>
+</head>
+<body>
+	<div>
+		<h2>分类名称</h2>
+		<ul>
+			<li>
+				<p>我的博客</p>
+				<input type="text">
+				<img src="img/pen.png" alt="修改">
+				<span>保存</span>
+				<span>取消</span>
+			</li>
+			<li>
+				<p>我的笔记</p>
+				<input type="text">
+				<img src="img/pen.png" alt="修改">
+				<span>保存</span>
+				<span>取消</span>
+			</li>
+		</ul>
+	</div>
+<script type="text/javascript">
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+
+	for (var i = 0; i < aLi.length; i++) {
+		edit(aLi[i]);
+	}
+
+	function edit(oLi){
+		var oP = oLi.getElementsByTagName('p')[0];
+		var oInput = oLi.getElementsByTagName('input')[0];
+		var oPen = oLi.getElementsByTagName('img')[0];
+		var oSpan1 = oLi.getElementsByTagName('span')[0];
+		var oSpan2 = oLi.getElementsByTagName('span')[1];
+
+		//初始化
+		oInput.className = 'hide';
+		oSpan1.className = 'hide';
+		oSpan2.className = 'hide';
+
+		oPen.onclick = function(){
+			oP.className = 'hide';
+			oPen.className = 'hide';
+			oInput.className = '';
+			oSpan1.className = '';
+			oSpan2.className = '';
+		}
+
+		oSpan1.onclick = function(){
+			oP.className = '';
+			oPen.className = '';
+			oInput.className = 'hide';
+			oSpan1.className = 'hide';
+			oSpan2.className = 'hide';
+			oP.innerHTML = oInput.value;
+		}
+
+		oSpan2.onclick = function(){
+			oP.className = '';
+			oPen.className = '';
+			oInput.className = 'hide';
+			oSpan1.className = 'hide';
+			oSpan2.className = 'hide';
+		}
+	}
+</script>
+</body>
+</html>

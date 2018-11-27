@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>分享到</title>
+</head>
+<style type="text/css">
+	#div1{
+		width: 100px;
+		height: 200px;
+		background: #ccc;
+		position: absolute;
+		left: -100px;
+	}
+	#div1 span{
+		width: 20px;
+		height: 60px;
+		line-height: 20px;
+		text-align: center;
+		background: yellow;
+		position: absolute;
+		left: 100px;
+		top: 70px;
+	}
+</style>
+<body>
+<div id="div1">
+	<span>分享到</span>
+</div>
+<script type="text/javascript">
+var timer = null;
+var div1 = document.getElementById('div1');
+div1.onmouseover = function(){move(0);}
+div1.onmouseout = function(){move(-100);}
+
+function move(target){
+		clearInterval(timer);
+		timer = setInterval(function(){
+			var speed = 0;
+			if (div1.offsetLeft < target) {
+				speed = 10;
+			}else{
+				speed = -10;
+			}
+			if (div1.offsetLeft == target) {//是否到达终点
+				clearInterval(timer);//到达终点
+			}else{
+				div1.style.left = div1.offsetLeft + speed + 'px';//没到终点
+			}
+		},30);
+	}
+</script>
+</body>
+</html>

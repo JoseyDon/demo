@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机圆圈变色</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	body{background: #d4baad;}
+	div{
+		position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 1000px;
+	}
+	div ul li{float: left;width: 100px;height: 100px;background: #a79a89;margin:5px;list-style: none;border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;}
+	.active{background: #676662;}
+	img{position: relative;top: 0;width: 100px;height: 100px;}
+	</style>
+	<script type="text/javascript" src="doMove.js"></script>
+	<script type="text/javascript" src="opacity.js"></script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	var aLi = document.getElementsByTagName('li');
+	var len = aLi.length;
+	var timer = null;
+	timer = setInterval(function(){
+		var obj = aLi[Math.round(Math.random()*len)];
+		opacity(obj,5,50,50,function(){
+			obj.style.opacity = 1;
+			obj.style.background = '#a79a89';
+		});
+		obj.style.background = '#676662';
+	},100);
+	</script>
+</body>
+</html>

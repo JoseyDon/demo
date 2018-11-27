@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片时钟实例</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	body{background: #f1f1f1;}
+	li{list-style: none;float: left;position: relative;}
+	#clock{
+		position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 1000px;
+	}
+	</style>
+</head>
+<body>
+	<div id="clock">
+		<ul>
+			<li><img src="img/0.jpg"></li>
+			<li><img src="img/0.jpg"></li>
+			<li><img src="img/colon.jpg"></li>
+			<li><img src="img/0.jpg"></li>
+			<li><img src="img/0.jpg"></li>
+			<li><img src="img/colon.jpg"></li>
+			<li><img src="img/0.jpg"></li>
+			<li><img src="img/0.jpg"></li>
+		</ul>
+	</div>
+	<script>
+	var oClock = document.getElementById('clock');
+	var aLi = oClock.getElementsByTagName('li');
+	var aImg = oClock.getElementsByTagName('img');
+
+	setInterval(fnTime,1000);
+
+	function fnTime(){
+		var myTime = new Date();
+		var iHours = myTime.getHours();
+		var iMin = myTime.getMinutes();
+		var iSec = myTime.getSeconds();
+		var str = toTwo(iHours) +toTwo(iMin) + toTwo(iSec);
+
+		for (var i = 0; i < aLi.length; i++) {
+			aImg[i].src = 'img/'+str.charAt(i) + '.jpg';
+		}
+	}
+
+	function toTwo(n){
+		return n < 10? '0'+n :''+n;
+	}
+	fnTime();
+	</script>
+</body>
+</html>

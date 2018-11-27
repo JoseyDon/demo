@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机产生100个从0~1000之间不重复的整数</title>
+	<style>
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+	var num = 1000;
+	var arr = [];
+	for (var i = 0; i < num; i++) {
+		arr.push(Math.round(Math.random()*1000));
+	}
+	document.body.innerHTML = arr;
+	</script>
+</body>
+</html>

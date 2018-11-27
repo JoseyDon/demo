@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function(){
+			document.title = 123;
+			document.body.innerHTML = "abc";
+			//title和body都是一个页面中唯一的标签
+			var aBtn = document.getElementsByTagName('input');
+			alert(aBtn.length);
+			document.body.innerHTML = '<input type="button" value="按钮" /><input type="button" value="按钮" /><input type="button" value="按钮" />';
+			//aBtn[0].onclick = function(){alert(1)};
+			//aBtn[1].onclick = function(){alert(2)};
+			//aBtn[2].onclick = function(){alert(3)};
+			for (var i = 0; i < aBtn.length; i++) {
+				alert(i);
+				}
+			}
+	</script>
+</head>
+<body>
+</body>
+</html>

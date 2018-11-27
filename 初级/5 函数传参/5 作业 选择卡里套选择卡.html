@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>选择卡里套选项卡</title>
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	li{list-style: none;}
+	body{background: #f1f1f1;}
+	#tab{width: 800px;
+		height: 400px;
+		position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    #tabNav{width: 152px;height: 400px;float: left;}
+    #tabNav ul{width: 152px;height: 400px;}
+    #tabNav ul li{width: 150px;height: 98px;border: 1px solid #ccc;border-bottom: none;text-align: center;vertical-align: middle;cursor: pointer;}
+    #tabNav ul li:last-child{border-bottom: 1px solid #ccc;}
+    #tabNav ul li img{width: 50px;height: 50px;margin-top: 15px;}
+    #tabNav ul li p{font-size: 14px;color: #999;}
+    #tabContent{width: 648px;height: 397px;overflow: hidden;position: relative;}
+    #des{width: 648px;height: 30px;line-height: 30px;overflow: hidden;position: absolute;bottom: 0;left: 0;}
+    #des ul li{text-align: center;background: rgba(83,71,65,0.5);color: #fff;font-size: 12px;float: left;margin-right: 1px;}
+    .a li{width: 215px;}
+    .b li{width: 161px;}
+    .c li{width: 128px;}
+    .d li{width: 107px;}
+    .a li:last-child,.b li:last-child,.c li:last-child,.d li:last-child{margin-right: 0px;}
+    .active{background: #fff;border-right: 0 !important;}
+    .hover{background: rgba(83,71,65,0.86) !important;}
+</style>
+</head>
+<body>
+	<div id="tab">
+		<div id="tabNav">
+			<ul>
+				<li class="active">
+					<img src="img/a.png">
+					<p>最热团购</p>
+				</li>
+				<li>
+					<img src="img/b.png">
+					<p>商城特惠</p>
+				</li>
+				<li>
+					<img src="img/c.png">
+					<p>名品推荐</p>
+				</li>
+				<li>
+					<img src="img/d.png">
+					<p>缤纷活动</p>
+				</li>
+			</ul>
+		</div>
+		<div id="tabContent">
+			<div id="des">
+				<ul class="a">
+					<li class="hover">Hello kitty联名口红</li>
+					<li>最新裸色口红</li>
+					<li>双十一清仓口红</li>
+				</ul>
+				<ul class="b">
+					<li class="hover">口红的奥秘</li>
+					<li>Ysl口红</li>
+					<li>3CE口红</li>
+					<li>萝卜丁</li>
+				</ul>
+				<ul class="c">
+					<li  class="hover">典雅气质</li>
+					<li>清新唇膏</li>
+					<li>咬唇妆的奥秘</li>
+					<li>打底！BB膏</li>
+					<li>最新款式</li>
+				</ul>
+				<ul class="d">
+					<li  class="hover">抹出我的颜色</li>
+					<li>如何拥有咬唇妆</li>
+					<li>轻薄唇彩</li>
+					<li>买一赠一</li>
+					<li>情人节特礼</li>
+					<li>组合套餐</li>
+				</ul>
+			</div>
+			<div id="pic">
+				<img src="img/1.jpg">	
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	var otabNav = document.getElementById('tabNav');
+	var atabNavLis = otabNav.getElementsByTagName('li');
+	var odes = document.getElementById('des');
+	var adesUls = odes.getElementsByTagName('ul');
+	var opic = document.getElementById('pic').getElementsByTagName('img')[0];
+	var num = 0;
+	var x = 0;
+	var arrPic =['One', 'Two', 'Three', 'Four'];
+	arrPic[0] = ['img/1.jpg','img/2.jpg','img/3.jpg',];
+	arrPic[1] = ['img/4.jpg','img/5.jpg','img/6.jpg','img/7.jpg'];
+	arrPic[2] = ['img/8.jpg','img/9.jpg','img/10.jpg','img/11.jpg','img/12.jpg'];
+	arrPic[3] = ['img/13.jpg','img/14.jpg','img/15.jpg','img/16.jpg','img/17.jpg','img/18.jpg'];
+
+	function tab(num){
+		for (var i = 0; i < atabNavLis.length; i++) {
+			atabNavLis[i].className = '';
+			adesUls[i].style.display = 'none';
+		}
+		atabNavLis[num].className = 'active';
+		adesUls[num].style.display = 'block';
+		over();
+	}
+
+	for (var i = 0; i < atabNavLis.length; i++) {
+		atabNavLis[i].index = i;
+		atabNavLis[i].onmouseover = function(){
+			num = this.index;
+			tab(num);
+		}
+	}
+
+	over();
+	function over(){
+		adesLis = adesUls[num].getElementsByTagName('li');
+		for (var i = 0; i < adesLis.length; i++) {
+			adesLis[i].className = '';
+		}
+		adesLis[0].className = 'hover';
+		opic.src= arrPic[num][0];
+
+		for (var i = 0; i < adesLis.length; i++) {
+			adesLis[i].index = i;
+			adesLis[i].onmouseover = function(){
+				x = this.index;
+				hover(x);
+			}
+		}
+	}
+
+	function hover(x){
+		for (var i = 0; i < adesLis.length; i++) {
+			adesLis[i].className = '';
+		}
+		adesLis[x].className = 'hover';
+		opic.src= arrPic[num][x];
+	}
+</script>
+</body>
+</html>

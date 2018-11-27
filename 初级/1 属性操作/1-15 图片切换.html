@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>图片切换</title>
+</head>
+<body>
+<img id="img" src="img/1.jpg" width="500px">
+
+<script type="text/javascript">
+	var oImg = document.getElementById('img');
+	var onOff = true;
+	oImg.onclick = function(){
+		if (onOff) {
+			oImg.src = 'img/3.jpg';
+			onOff = false;
+		}else{
+			oImg.src = 'img/1.jpg';
+			onOff = true;
+		}
+	}
+</script>
+</body>
+</html>

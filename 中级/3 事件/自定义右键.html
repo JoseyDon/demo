@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>右键自定义</title>
+</head>
+<style type="text/css">
+	#div1{
+		width: 200px;
+		height: 500px;
+		border:1px solid red;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+	}
+</style>
+<body>
+<div id="div1">
+</div>
+<script type="text/javascript">
+	var div1 = document.getElementById('div1');
+
+	document.oncontextmenu = function(ev){
+		var ev = ev || event;
+		div1.style.display = 'block';
+		div1.style.left = ev.clientX +'px';
+		div1.style.top = ev.clientY +'px';
+		return false;
+	}
+</script>
+</body>
+</html>  

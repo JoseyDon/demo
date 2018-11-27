@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>[]的使用</title>
+	<style type="text/css">
+	#div1{
+		width:500px;height:500px;border:5px solid #ccc;
+	}
+	</style>
+</head>
+<body>
+<!-- js中允许 “. ” 替换成“[]” -->
+请输入属性名称：<input type="text" id="attr">
+请输入属性值：<input type="text" id="val">
+<input type="button" id="btn" value="确定">
+<div id="div1"></div>
+
+<script type="text/javascript">
+	var oAttr = document.getElementById('attr');
+	var oVal = document.getElementById('val');
+	var oBtn = document.getElementById('btn');
+	var oDiv = document.getElementById('div1');
+
+	oBtn.onclick = function(){
+		oDiv.style[oAttr.value] = oVal.value;
+	}
+</script>
+</body>
+</html>

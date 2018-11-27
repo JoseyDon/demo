@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>延迟消失的菜单</title>
+<style type="text/css">
+	*{margin: 0;padding: 0;}
+	body{background: #f1f1f1;}
+	li{list-style: none;}
+	a{text-decoration: none;color:#8c96a0;}
+	#content{position: absolute;top: 50%;left: 50%;
+	            -webkit-transform: translate(-50%, -50%);
+	            -moz-transform: translate(-50%, -50%);
+	            -ms-transform: translate(-50%, -50%);
+	            -o-transform: translate(-50%, -50%);
+	            transform: translate(-50%, -50%);
+	            color: #8c96a0;
+	        	box-shadow: 3px 3px 13px rgba(0,0,0,0.1);
+	        	border: 1px solid #ccc;
+	        	padding: 0 10px;
+	        	width: 800px;
+	        	height: 180px;
+			border-radius: 5px;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+	background: -webkit-linear-gradient(#f2f3f7, #e4e8ec);
+	background: -o-linear-gradient(#f2f3f7, #e4e8ec);
+	background: linear-gradient(#f2f3f7, #e4e8ec);
+	        }
+	#nav{font-size: 30px;width: 800px;height: 90px;}
+    #nav ul li{float: left;margin: 10px 20px;cursor: pointer;padding: 10px;}
+    #nav .hover{background: #e5dede;border-radius: 5px;
+			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+			border: 1px solid #ccc;
+		}
+    #nav ul a{float: right;margin: 20px 10px;}
+    #home {width: 250px;height: 40px;position: relative;top: 0;left: 10px;display: none;}
+    #aboutUs {width: 350px;height: 40px;position: relative;top: 0;left: 60px;display: none;}
+    #works{width: 250px;height: 40px;position: relative;top: 0;left: 250px;display:none;}
+    #blog{width: 250px;height: 40px;;position: relative;top: 0;left: 350px;display:none;}
+    .more{border-radius: 5px;
+    			box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+    			border: 1px solid #ccc;
+    background: -webkit-linear-gradient(#f2f3f7, #e4e8ec);
+    background: -o-linear-gradient(#f2f3f7, #e4e8ec);
+    background: linear-gradient(#f2f3f7, #e4e8ec);
+    }
+    .more li{float: left;border-right: 1px solid #ccc;padding: 5px 10px;height: 20px;line-height: 20px;margin-top: 5px;cursor: pointer;}
+
+</style>
+</head>
+<body>
+	<div id="content">
+		<div id="nav">
+			<ul>
+				<li>首页</li>
+				<li>关于我们</li>
+				<li>作品</li>
+				<li>博客</li>
+				<a href="#">更多>></a>
+			</ul>
+		</div>
+		<div id="home" class="more">
+			<ul>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+			</ul>
+		</div>
+		<div id="aboutUs" class="more">
+			<ul>
+				<li>关于我们</li>
+				<li>关于我们</li>
+				<li>关于我们</li>
+				<li>关于我们</li>
+			</ul>
+		</div>
+		<div id="works" class="more">
+			<ul>
+				<li>作品</li>
+				<li>作品</li>
+				<li>作品</li>
+				<li>作品</li>
+			</ul>
+		</div>
+		<div id="blog" class="more">
+			<ul>
+				<li>博客</li>
+				<li>博客</li>
+				<li>博客</li>
+				<li>博客</li>
+			</ul>
+		</div>
+	</div>
+<script type="text/javascript">
+	var oNav = document.getElementById('nav');
+	var aLi = oNav.getElementsByTagName('li');
+	var oContent = document.getElementById('content');
+	var aDiv = oContent.getElementsByTagName('div');
+	var num = 0;
+	var timer = null;
+
+	for (var i = 0; i < aLi.length; i++) {
+		aLi[i].index = i;
+		aLi[i].onmouseover = function(){
+			num = this.index;
+			this.className = 'hover';
+			for (var j = 1; j < aDiv.length; j++) {
+				aDiv[j].style.display = 'none';
+			}
+			aDiv[num+1].style.display = 'block';
+			clearInterval(timer);
+		}
+		aLi[i].onmouseout = function(){
+			num = this.index;
+			this.className = '';
+			clearInterval(timer);
+			stop();
+			//aDiv[num+1].style.display = 'none';
+		}
+	}
+
+	function stop(){
+		timer = setInterval(function(){
+		aDiv[num+1].style.display = 'none';
+	},1000);
+	}
+
+	for (var i = 1; i < aDiv.length; i++) {
+		aDiv[i].onmouseover = function(){
+			clearInterval(timer);
+		}
+		aDiv[i].onmouseout = stop;
+	}
+</script>
+</body>
+</html>

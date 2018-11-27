@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#phone{width: 600px;height: 754px;background: url(img/q.jpg);position: relative;}
+		#chat{position: absolute;border:1px solid #ccc;top:162px;left:162px;width: 252px;height: 380px;overflow:hidden; overflow-y:visible ;}
+		#chat span{background:#6CC;width: 300px;height: 30px;}
+		#icon{position: absolute;width: 30px;height: 30px;top:560px;left: 170px;border: 1px solid #ccc;}
+		#text1{position: absolute;top: 560px;left: 210px;width: 160px;height: 25px;line-height: 25px;font-size: 18px;}
+		#button1{position: absolute;top: 560px;left: 380px;width: 40px;height: 30px;line-height: 30px;background: #ccc;}
+	</style>
+</head>
+<body>
+<div id="phone">
+	<div id="chat"></div>
+	<img id="icon" src="img/a.png" />
+	<input type="text" id="text1">
+	<input type="button" id="button1" value="发送">
+</div>
+<script type="text/javascript">
+	var chat = document.getElementById('chat');
+	var icon = document.getElementById('icon');
+	var text = document.getElementById('text1');
+	var button = document.getElementById('button1');
+	var flag = true;
+
+	icon.onclick = function(){
+		if (flag) {
+			icon.src = 'img/s.png';
+			flag = false;
+		}else{
+			icon.src = 'img/a.png';
+			flag = true;
+		}
+	}
+	button.onclick = function(){
+		if (flag == true) {
+			chat.innerHTML = '<div><img src="img/a.png" /><span>' + text.value + '</span></div>' + '<br />' + chat.innerHTML;
+		}else{
+			chat.innerHTML = '<div><img src="img/s.png" /><span>' + text.value + '</span></div>' + '<br />' + chat.innerHTML;
+		}
+	}
+</script>
+</body>
+</html>

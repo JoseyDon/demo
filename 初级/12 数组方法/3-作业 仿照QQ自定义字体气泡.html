@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿照qq自定义字体气泡</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	#wrap{
+		position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background: url(img/bg.png);
+        width: 600px;
+        height: 546px;
+	}
+	#showbox{
+		position: absolute;
+		top: 85px;
+		left: 0;
+		width: 456px;
+		height: 340px;
+	}
+	#showbox div{
+		width: 20px;
+		display: inline-block;
+		font-size: 16px;
+		margin: 2px 0
+	}
+	#showbox div img{
+		width: 16px;
+		height: 16px;
+	}
+	#wrap ul{
+		position: absolute;
+		top: 416px;
+		left: 1px;
+		width: 456px;
+		height: 30px;
+		z-index: 2;
+		background: #eef7f9;
+	}
+	#wrap ul li{
+		height: 20px;
+		width: 20px;
+		text-align: center;
+		line-height: 20px;
+		font-size: 18px;
+		color: gray;
+		border-radius: 4px;
+		list-style: none;
+		cursor: pointer;
+	}
+	.hover{
+		background: #ccc;
+	}
+	#bubble{
+		width: 456px;
+		height: 20px;
+		position: relative;
+		top: 416px;
+		left: 0;
+		z-index: 1;
+		border-top: 1px solid #8faeb5;
+		padding-top: 2px;
+	}
+	select{margin-left: 5px;}
+	textarea{
+		position: absolute;
+		top: 448px;
+		left: 1px;
+		width: 458px;
+		height: 60px;
+		border: none;
+		background: none;
+		resize:none;
+		outline:none;
+	}
+	button{
+		position: absolute;
+		top: 508px;
+		left: 350px;
+		width: 80px;
+		height: 20px;
+		font-size: 12px;
+		outline: none;
+		background: #97d5de;
+		border: none;
+		border-radius: 2px;
+	}
+	</style>
+	<script type="text/javascript" src="doMove.js"></script>
+	<script type="text/javascript" src="opacity.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="showbox"></div>
+		<ul>
+			<li>A</li>
+		</ul>
+		<div id="bubble">
+			<select id="fontStyle">
+				<option value="balloon">气球字体</option>
+				<option value="love">表白字体</option>
+				<option value="knife">砍刀字体</option>
+				<option value="jiong">囧人字体</option>
+				<option value="shuai">衰人字体</option>
+				<option value="default" selected>默认字体</option>
+			</select>
+		</div>
+	<textarea></textarea>
+	<button>发送</button>
+	</div>
+	<script type="text/javascript">
+	var oLi = document.getElementsByTagName('li')[0];
+	var oBubble = document.getElementById('bubble');
+	var oBtn = document.getElementsByTagName('button')[0];
+	var oTextarea = document.getElementsByTagName('textarea')[0];
+	var oSelect = document.getElementsByTagName('select')[0];
+	var oShowbox = document.getElementById('showbox');
+	var flag = false;
+	json = {
+		'balloon': 'img/balloon.png',
+		'love': 'img/heart.gif',
+		'knife': 'img/knife.gif',
+		'jiong': 'img/jiong.gif',
+		'shuai': 'img/shuai.gif'
+	}
+	oLi.onmouseover = function(){
+		this.className = 'hover';
+	}
+	oLi.onmouseout = function(){
+		this.className = '';
+	}
+	oLi.onclick = function(){
+		if (flag) {
+			doMove(oBubble,"top",5,416,function(){
+				flag = false;
+			});
+		}else{
+				doMove(oBubble,"top",5,390,function(){
+					flag = true;
+			});
+		}
+	}
+
+	oBtn.onclick = function(){
+		var str = oTextarea.value;
+		if (str == '') {
+			alert('请输入文字');
+		}else if (oSelect.value == 'default') {
+			oShowbox.innerHTML += str +'<br/>';
+			oTextarea.value = '';
+		}
+		for(attr in json){
+			useFont(attr,json[attr],str);
+		}
+
+		function useFont(fontStyle,url,str){
+			if (oSelect.value == fontStyle) {
+				var arr = str.split('');
+				str = '';
+				for (var i = 0; i < arr.length; i++) {
+					str += '<div><img src = "' + url + '"><span>' + arr[i] + '<span></div>';
+				}
+				oShowbox.innerHTML += str + '<br/>';
+				oTextarea.value = '';
+			}
+		}
+	}
+	</script>
+</body>
+</html>

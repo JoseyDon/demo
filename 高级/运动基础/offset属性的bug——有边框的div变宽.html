@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>offset属性的bug——有边框的div变宽</title>
+</head>
+<style type="text/css">
+	div{
+		width: 100px;
+		height:100px;
+		background: red;
+		border:1px solid;
+	}
+</style>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+setInterval(function(){
+	var oDiv = document.getElementById('div1');
+	oDiv.style.width = oDiv.offsetWidth - 1 + 'px';
+},30);
+/*for (var i = 0; i < aDiv.length; i++) {
+	aDiv[i].alpha = 30;
+	aDiv[i].onmouseover = function(){
+		startMove(this,100);
+	}
+
+	aDiv[i].onmouseout = function(){
+		startMove(this,30);
+	}
+}
+
+function startMove(obj,iTarget){
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function(){
+		var iSpeed = (iTarget - obj.alpha)/8;
+		iSpeed = iSpeed > 0 ? Math.ceil(iSpeed):Math.floor(iSpeed);
+
+		if (obj.alpha == iTarget) {
+			clearInterval(obj.timer);
+		}else{
+			obj.alpha = obj.alpha + iSpeed;
+			document.title = obj.alpha;
+			obj.style.filter = 'alpha(opacity:'+obj.alpha+')';
+			obj.style.opacity = obj.alpha/100;
+		}
+	},30);
+}*/
+</script>
+</body>
+</html>

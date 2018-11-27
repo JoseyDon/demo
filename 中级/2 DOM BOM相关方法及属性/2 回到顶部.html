@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>回到顶部</title>
+	<style type="text/css">
+		#wrapper{
+			height: 2000px;
+			position: relative;
+		}
+		#toTop{
+			width: 100px;
+			height: 100px;
+			background: red;
+			display: block;
+			position: absolute;
+			cursor: pointer;
+			bottom: 0;
+			right: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<span id="toTop">回到顶部</span>
+	</div>
+<script type="text/javascript">
+	var oBtn = document.getElementById('toTop');
+	oBtn.onclick = function(){
+		if (oBtn.flag) {
+			return;
+		}
+		oBtn.flag = true;
+		
+		oBtn.timer = setInterval(function(){
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			var top = (scrollTop -40) > 0 ? (scrollTop -40):0;
+			document.documentElement.scrollTop = top;
+			document.body.scrollTop = top;
+			if (top == 0) {
+				clearInterval(oBtn.timer);
+				oBtn.flag = false;
+			}
+		},20);
+	}
+</script>
+</body>
+</html>       

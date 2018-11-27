@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>综合实例 生成一组新闻</title>
+</head>
+<body>
+<input type="button" id="btn1" value="自动生成五条新闻">
+<ul id="list"></ul>
+<script type="text/javascript">
+//需要解决的问题是：
+//多次点击按钮会重复出现多条新闻
+//解决思路：
+//1.干掉按钮 disabled none 缺点是用户体验不太好
+//2.先清空原有的
+//3.判断
+	var arr = ['康熙来了之揭开打工旅游的恐怖真相','康熙来了之他们比表特美女还要正','康熙来了之大S复出代班 明星的疯狂婚礼','康熙来了之十大好男友职业排行榜','康熙来了之康熙明星的意外人生']
+	var oBtn = document.getElementById('btn1');
+	var oUl = document.getElementById('list');
+	var flag = true;
+	oBtn.onclick = function(){
+		if (flag) {
+			flag = false;
+			for (var i = 0; i < arr.length; i++) {
+				oUl.innerHTML += '<li>'+arr[i]+"</li>";
+			}
+		}
+	}
+</script>
+</body>
+</html>

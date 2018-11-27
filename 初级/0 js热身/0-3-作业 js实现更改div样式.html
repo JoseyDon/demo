@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+		}
+		#div1{
+			width: 100px;
+			height: 100px;
+			border: 5px solid;
+			margin: 50px;
+		}
+		strong{
+			font-size: 35px;
+			position: relative;
+		}
+		#btn{
+			padding: 10px;
+			position: absolute;
+			top: 5px;
+			color: white;
+			background: #ff0000;
+			border: 1px solid #9b9797;
+		}
+		#popWindow{
+			background: #9D9D9D;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			filter: alpha(opacity=80);
+			opacity: 0.8;
+			z-index: 1;
+			display: none;
+		}
+		#maskWindow{
+			background: #ffffff;
+			border: 20px solid #cecece;
+			width: 500px;
+			height: 300px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			z-index: 2;
+			text-align: center;
+			display: none;
+		}
+		#maskWindow ul{
+			margin-top: 50px;
+		}
+		#maskWindow ul li{
+			margin-bottom: 20px;
+			font-size: 22px;
+			font-family: 'SimHei';
+			font-weight: bold;
+		}
+		#btn_red,#btn_yellow,#btn_blue{
+			width: 40px;
+			height: 40px;
+			margin-left: 10px;
+			border: 1px solid #9b9797;
+			cursor: pointer;
+		}
+		#btn_red{
+			background: #d92d2d;
+		}
+		#btn_yellow{
+			background: #f3f605;
+		}
+		#btn_blue{
+			background: #4280f3;
+		}
+		.btn_number{
+			width: 40px;
+			height: 30px;
+			margin-left: 8px;
+			background: #e5dede;
+			border: 1px solid #9b9797;
+			cursor: pointer;
+		}
+		.fBtn{
+			width: 60px;
+			height: 50px;
+			margin-left: 10px;
+			background: #204c88;
+			border: 1px solid #9b9797;
+			font-size: 16px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+<strong>请为下面的div设计样式：</strong>
+<input type="button" id="btn" value="点击设置">
+<div id="div1"></div>
+<div id="popWindow"></div>
+<div id="maskWindow">
+	<ul>
+		<li>请选择背景色：<input type="button" id="btn_red" value="红"><input type="button" id="btn_yellow" value="黄"><input type="button" id="btn_blue" value="蓝"></li>
+		<li>请选择宽(px)：<input type="button" class="btn_number" id="btn_width_200" value="200"><input type="button" class="btn_number" id="btn_width_300" value="300"><input type="button" class="btn_number" id="btn_width_400" value="400"></li>
+		<li>请选择高(px)：<input type="button" class="btn_number" id="btn_height_200" value="200"><input type="button" class="btn_number" id="btn_height_300" value="300"><input type="button" class="btn_number" id="btn_height_400" value="400"></li>
+	</ul>
+	<input type="button" class="fBtn" id="recover" value="恢复">
+	<input type="button" class="fBtn" id="confirm" value="确定">
+</div>
+
+<script type="text/javascript">
+	var btn = document.getElementById('btn');
+	var popWindow = document.getElementById('popWindow');
+	var maskWindow = document.getElementById('maskWindow');
+	var confirm = document.getElementById('confirm');
+	var recover = document.getElementById('recover');
+	var btn_red = document.getElementById('btn_red');
+	var btn_yellow = document.getElementById('btn_yellow');
+	var btn_blue = document.getElementById('btn_blue');
+	var btn_width_200 = document.getElementById('btn_width_200');
+	var btn_width_300 = document.getElementById('btn_width_300');
+	var btn_height_400 = document.getElementById('btn_width_400');
+	var btn_height_200 = document.getElementById('btn_height_200');
+	var btn_height_300 = document.getElementById('btn_height_300');
+	var btn_height_400 = document.getElementById('btn_height_400');
+	var div1 = document.getElementById('div1');
+
+	btn.onclick = function(){
+		popWindow.style.display = "block";
+		maskWindow.style.display = "block";
+	}
+	confirm.onclick = function(){
+		popWindow.style.display = "none";
+		maskWindow.style.display = "none";
+	}
+	btn_red.onmouseover = function(){
+		btn_red.style.background = "#ff0000";
+	}
+	btn_red.onmouseout = function(){
+		btn_red.style.background = "#d92d2d";
+	}
+	btn_red.onclick = function(){
+		div1.style.background = "#ff0000";
+	}
+	btn_yellow.onmouseover = function(){
+		btn_yellow.style.background = "#ff9c00";
+	}
+	btn_yellow.onmouseout = function(){
+		btn_yellow.style.background = "#f3f605";
+	}
+	btn_yellow.onclick = function(){
+		div1.style.background = "#ff9c00";
+	}
+	btn_blue.onmouseover = function(){
+		btn_blue.style.background = "#0925cf";
+	}
+	btn_blue.onmouseout = function(){
+		btn_blue.style.background = "#4280f3";
+	}
+	btn_blue.onclick = function(){
+		div1.style.background = "#0925cf";
+	}
+	btn_width_200.onclick = function(){
+		div1.style.width = "200px";
+	}
+	btn_width_300.onclick = function(){
+		div1.style.width = "300px";
+	}
+	btn_width_400.onclick = function(){
+		div1.style.width = "400px";
+	}
+	btn_height_200.onclick = function(){
+		div1.style.height = "200px";
+	}
+	btn_height_300.onclick = function(){
+		div1.style.height = "300px";
+	}
+	btn_height_400.onclick = function(){
+		div1.style.height = "400px";
+	}
+	recover.onclick = function(){
+		div1.style.background = "none";
+		div1.style.width = "100px";
+		div1.style.height = "100px";
+	}
+</script>
+</body>
+</html>

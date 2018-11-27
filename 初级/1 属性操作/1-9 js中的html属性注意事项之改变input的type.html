@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>改变input的type</title>
+</head>
+<body>
+<input type="text" id="inp1">
+
+<script type="text/javascript">
+	var oInp = document.getElementById('inp1');
+	oInp.onclick = function(){
+		oInp.type = 'checkbox';
+		//IE6 IE7 IE8不支持，会报错；
+	}
+</script>
+</body>
+</html>

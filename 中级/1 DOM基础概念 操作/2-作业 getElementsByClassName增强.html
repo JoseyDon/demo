@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>getElementsByClassName增强</title>
+</head>
+<body>
+	<ul>
+		<li class="box box1">11111111</li>
+		<li class="box2">22222222</li>
+		<li>33333333</li>
+		<li class="box1">44444444</li>
+		<li>55555555</li>
+		<li class="box3 box4">66666666</li>
+	</ul>
+	<div class="box">7777</div>
+<script type="text/javascript">
+	function getElementsByClassName(obj,tagname,className){
+		var aClassName = className.split(", ");
+		var arr = [];
+		var aEles = obj.getElementsByTagName(tagname);
+		for (var i = 0; i < aClassName.length; i++) {
+			for (var j = 0; j < aEles.length; j++) {
+				var allClassName = aEles[j].className.split(" ");
+				for (var k = 0; k < allClassName.length; k++) {
+					if (allClassName[k] == aClassName[i]) {
+						arr.push(aEles[j]);
+						break;
+				}
+			}
+		}
+	}
+	return arr;
+}
+
+	var arrChosen = getElementsByClassName(document,'*','box, box1');
+
+	for (var i = 0; i < arrChosen.length; i++) {
+		arrChosen[i].style.background = 'red';
+	}
+</script>
+</body>
+</html>

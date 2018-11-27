@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>分享到</title>
+</head>
+<style type="text/css">
+	#img1{filter: alpha(opacity:30);opacity: 0.3;}
+</style>
+<body>
+<img id="img1" src="2.jpg">
+<script type="text/javascript">
+var timer = null;
+var alpha = 30;
+var oImg = document.getElementById('img1');
+oImg.onmouseover = function(){move(100);};
+oImg.onmouseout = function(){move(30);};
+function move(target){
+	clearInterval(timer);
+	timer = setInterval(function(){
+		var speed = 10;
+		if (alpha < target) {
+			speed =10;
+		}else{
+			speed = -10;
+		}
+		if (alpha == target) {
+			clearInterval(timer);
+		}else{
+			alpha +=speed;
+			oImg.style.filter = 'alpha(opacity:'+alpha+')';
+			oImg.style.opacity = alpha / 100;
+		}
+	},30);
+}
+</script>
+</body>
+</html>

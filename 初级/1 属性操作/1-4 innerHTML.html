@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>innerHTML</title>
+</head>
+<body>
+<input type="text" id="text1">
+<input type="button" id="btn" value="按钮">
+<p id="p1">我是p标签里的文字</p>
+
+<script type="text/javascript">
+	var text1 = document.getElementById('text1');
+	var btn = document.getElementById('btn');
+	var p1 = document.getElementById('p1');
+
+	btn.onclick = function(){
+		p1.innerHTML = text1.value;
+		text1.value = "";
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<link href="css.css" rel="stylesheet" type="text/css" />
+<script src="data.js"></script>
+<script src="getPos.js"></script>
+
+</head>
+
+<body>
+	<div id="container">
+		<ul id="header"></ul>
+		
+		<div id="listContent"></div>
+	</div>
+	
+	<div id="tips">
+		<span id="arrow"></span>
+        <div id="tipsContent"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	var oHeader = document.getElementById('header');
+	var oListContent = document.getElementById('listContent');
+	var oTips = document.getElementById('tips');
+	var oTipsContent = document.getElementById('tipsContent');
+
+	//生成一级标题
+	for (var i = 0; i < data.length; i++) {
+		var oLi = document.createElement('li');
+		oLi.innerHTML = data[i].name;
+		oHeader.appendChild(oLi);
+	}
+	//一级标题初始化
+	oHeader.children[0].className = 'focus';
+
+	//生成二级标题的函数
+	function addTitle(index){
+		var oUl = document.createElement('ul');
+		for (var i = 0; i < data[index].list.length; i++) {
+			var oLi = document.createElement('li');
+			oLi.innerHTML = '<a href="javascript:;">' + data[index].list[i].title +'</a>';
+			oUl.appendChild(oLi);
+		}
+		oListContent.innerHTML = "";
+		oListContent.appendChild(oUl);
+		oUl.className = 'list';
+	}
+
+	//生成二级标题的函数
+	for (var i = 0; i < oHeader.children.length; i++) {
+		oHeader.children[i].index = i;
+		oHeader.children[i].onclick = function(){
+			//更改一级标题的样式
+			for (var i = 0; i < oHeader.children.length; i++) {
+				oHeader.children[i].className = "";
+			}
+			this.className = "focus";
+			//生成对应的二级标题
+			addTitle(this.index);
+			showTitle(this.index);
+		}
+	}
+
+	//生成悬浮窗的函数
+	function showTips(title){
+		//确定悬浮窗的位置
+		var pos = getPos(title);
+		if (pos.top - 120 > document.body.scrollTop + document.documentElement.clientHeight - 220) {
+			oTips.style.top = document.body.scrollTop + document.documentElement.clientHeight - 220 + 'px';
+		}else {
+			oTips.style.top = pos.top -120 +'px';
+		}
+		if (pos.top - 120 <document.body.scrollTop) {
+			oTips.style.top = document.body.scrollTop + 20+'px';
+		}
+		oTips.style.left = pos.left + title.offsetWidth + 20 + 'px';
+	}
+
+	//生成悬浮窗中的内容的函数
+	function tipsContent(m,n){
+		oTipsContent.innerHTML = '';
+		var oUl = document.createElement('ul');
+		var str = "<li><h2>"+data[m].list[n].company + '</h2></li><li class="col"><span style="font-weight:bold">职位：</span><span>'+data[m].list[n].position+'</span></li><li class="col"><span style="font-weight:bold">招聘人数：</span><span>'+data[m].list[n].recruitingNumbers+'</span></li><li class="col"><span style="font-weight:bold">工作地点：</span><span>'+data[m].list[n].workingLocation+'</span></li><li class="col"><span style="font-weight:bold">工作经验：</span><span>'+data[m].list[n].workExperience+'</span></li><li class="col"><span style="font-weight:bold">学历：</span><span>'+data[m].list[n].education+'</span></li><li class="col"><span style="font-weight:bold">工资：</span><span>'+data[m].list[n].wage+'</span></li>';
+		oUl.innerHTML = str;
+		oTipsContent.appendChild(oUl);
+	}
+	//鼠标悬浮事件函数
+	function showTitle(idx){
+		var oList = oListContent.getElementsByTagName('ul')[0];
+		var aTitle = oList.getElementsByTagName('a');
+		for(var i=0; i<aTitle.length; i++){
+			aTitle[i].index = i;
+			aTitle[i].onmouseover = function(){	
+				oTips.style.display = 'block';
+				showTips(this);
+				tipsContent(idx,this.index);
+			}
+			aTitle[i].onmouseout = function(){
+				oTips.style.display = 'none';
+			}
+		}
+	}
+	//页面初始化
+	addTitle(0);
+	showTitle(0);
+</script>
+</html>

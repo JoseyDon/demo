@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片自动切换</title>
+	<script type="text/javascript" src="doMove.js"></script>
+	<style>
+		*{padding:0;margin: 0}
+		li{list-style: none;}
+		body{
+			background: :#f1f1f1;
+		}
+		#wrap{
+			position: absolute;top: 50%;left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 300px;
+        border: 1px solid #ccc;
+        overflow: hidden; 
+		}
+		img{width: 500px;height: 300px;}
+		ul{position: relative;}
+		li{position: absolute;top: 0;}
+		#dec{width: 500px;height: 70px;background: rgba(53,53,53,0.8);position: absolute;bottom: -70px;}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+		</ul>
+		<div id="dec">
+			<h3></h3>
+			<p></p>
+		</div>
+	</div>
+	<script>
+	var oWrap = document.getElementById('wrap');
+	var oUl = oWrap.getElementsByTagName('ul')[0];
+	var aLi = oWrap.getElementsByTagName('li');
+	var aImg = oWrap.getElementsByTagName('img');
+	var oDec = document.getElementById('dec');
+	var oH3 = oDec.getElementsByTagName('h3')[0];
+	var oP = oDec.getElementsByTagName('p')[0];
+	var num = 0;
+	var time = null;
+	var arrImg = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg','img/6.jpg','img/1.jpg'];
+	var arrH3 = ['《第一张图片》','《第一张图片》','《第二张图片》','《第三张图片》','《第四张图片》','《第五张图片》','《第六张图片》']
+	var arrP = ['第一张图片文字描述说明','第一张图片文字描述说明','第二张图片文字描述说明','第三张图片文字描述说明','第四张图片文字描述说明','第五张图片文字描述说明','第六张图片文字描述说明']
+	for (var i = 0; i < arrImg.length; i++) {
+		oUl.innerHTML += '<li><img src='+arrImg[i]+'></li>';
+		aLi[i].style.left = i*500 + 'px';
+		oH3.innerHTML = arrH3[0];
+		oP.innerHTML = arrP[0];
+	}
+/*	doMove(oDec,'bottom',10,0,function(){
+		setTimeout(function(){
+			oH3.innerHTML = arrH3[num];
+			oP.innerHTML = arrP[num];
+			doMove(oDec,'bottom',20,-70);
+		},1500);
+	});*/
+
+	timer = setInterval(function(){
+		doMove(oUl,'left',20,-oUl.offsetWidth*num,function(){
+			oH3.innerHTML = arrH3[num];
+			oP.innerHTML = arrP[num];
+			doMove(oDec,'bottom',20,0,function(){
+				setTimeout(function(){
+					oH3.innerHTML = arrH3[num];
+					oP.innerHTML = arrP[num];
+					doMove(oDec,'bottom',20,-70);
+					if (num == aImg.length-1) {
+						oUl.style.left = 0;
+						num = 0;
+					}
+			},1500);
+			});
+		});
+		num++;
+	},3000);
+
+
+
+/*	timer = setInterval(function(){
+
+		clearInterval(timer);
+		doMove(oUl,'left',50,-oUl.offsetWidth*num);
+		oH3.innerHTML = arrH3[num];
+		oP.innerHTML = arrP[num];
+		num++;
+		//alert(aLi[0].style.left);
+		if (num == aLi.length) {
+			//aLi[0].style.left = 3000 +'px';oUl.innerHTML += '<li><img src='+arrImg[0]+'></li>';
+			oUl.style.left = 0;
+			num = 0;
+			//clearInterval(timer);
+		}
+	},1000);*/
+	</script>
+</body>
+</html>

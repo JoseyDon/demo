@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>拖拽</title>
+</head>
+<style type="text/css">
+	#div1{
+		width: 100px;
+		height: 100px;
+		background: red;
+		position: absolute;
+		top: 200px;
+		left: 500px;
+	}
+</style>
+<body>
+<div id="div1">
+</div>
+<script type="text/javascript">
+	var div1 = document.getElementById('div1');
+
+	div1.onmousedown = function(ev){
+		var ev = ev||event;
+
+		var disW = div1.offsetWidth;
+		var disX = ev.clientX;
+		var disL = div1.offsetLeft;
+
+		var b = '';
+
+		if (disX > disL + disW - 30) {
+			b = 'right';
+		}else if (disX< disL + 30) {
+			b = 'left';
+		}
+
+		document.onmousemove = function(ev){
+			var ev = ev||event;
+			switch(b){
+				case 'left':
+					div1.style.width = disW - (ev.clientX - disX) + 'px';
+					div1.style.left = disL + (ev.clientX - disX) + 'px';
+				break;
+
+				case 'right':
+					div1.style.width = disW + (ev.clientX - disX) + 'px';
+				break;
+			}
+		}
+
+		document.onmouseup = function(){
+			document.onmousemove = document.onmouseup = null;
+		}
+		return false;
+	}
+</script>
+</body>
+</html>  

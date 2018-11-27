@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>商品价格计算</title>
+<style type="text/css">
+	body{background: #f1f1f1;}
+	input{font-size: 30px;color: gray;padding: 0 10px;box-shadow: 3px 3px 13px rgba(0,0,0,0.1);}
+	input:nth-of-type(2){margin-right: 40px;}
+	div{	position: absolute;top: 50%;left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font: 20px;
+            color: #666;
+        }
+	ul { padding:0; margin:0; }
+	li { list-style:none;padding-left: 40px; }
+	strong{display: inline-block;width: 80px;text-align: center;}
+	em{margin-right: 40px;}
+	em,span{font-size: 30px;}
+	p{border-top: 1px solid #999;padding-top: 15px;}
+</style>
+</head>
+<body>
+<div>
+	<ul id="list">
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>12.5元</em>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>25元</em>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>200元</em>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>34元</em>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>60元</em>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>45元</em>
+			小计：<span>0元</span>
+		</li>
+		<li>
+			<input type="button" name="" value="-">
+			<strong>0</strong>
+			<input type="button" name="" value="+">
+			单价：<em>90.5元</em>
+			小计：<span>0元</span>
+		</li>
+		</ul>
+	<p>
+		商品合计共：<strong>0件</strong>，共花费了：<strong>0元</strong>，其中最贵的商品单价是：<strong>0元</strong>
+	</p>
+</div>
+<script type="text/javascript">
+	var oUl = document.getElementById('list');
+	var aStrong = oUl.getElementsByTagName('strong');
+	var aSpan = oUl.getElementsByTagName('span');
+	var aEm = oUl.getElementsByTagName('em');
+	var aLi = oUl.getElementsByTagName('li');
+	var oP = document.getElementsByTagName('p')[0];
+	var arrPrice = [];
+
+	for (var i = 0; i < aLi.length; i++) {
+		arrPrice.push(0);
+	}
+
+	for( var i=0; i<aLi.length; i++ ){
+		count(aLi[i]);
+	}
+
+	function sum(){
+		var num = 0;
+		var price = 0;
+		var iMax = 0;
+
+		for (var i = 0; i < aStrong.length; i++) {
+			num += Number(aStrong[i].innerHTML);
+			price += parseFloat(aSpan[i].innerHTML);
+
+			if (aStrong[i].innerHTML > 0) {
+				arrPrice[i] = parseFloat( aEm[i].innerHTML );
+			}else{
+				arrPrice[i] = 0;
+			}
+		}
+
+		for (var i = 0; i < arrPrice.length; i++) {
+			if (iMax < arrPrice[i]) {
+				iMax = arrPrice[i];
+			}
+		}
+
+		oP.innerHTML = '商品合计共：<strong>' + num + '件</strong>，共花费了：<strong>' + price + '元</strong>，其中最贵的商品单价是：<strong>' + iMax+'元</strong>';
+	}
+		
+	function count(oLi){
+		var aBtn = oLi.getElementsByTagName('input');
+		var oStrong = oLi.getElementsByTagName('strong')[0];
+		var oEm = oLi.getElementsByTagName('em')[0];
+		var oSpan = oLi.getElementsByTagName('span')[0];
+		var n1 = Number(oStrong.innerHTML);
+		var n2 = parseFloat(oEm.innerHTML);
+
+		aBtn[0].onclick = function(){
+			n1--;//隐式转换 字符串——>数字
+			if (n1 < 0) {
+				n1 = 0;
+			}
+			oStrong.innerHTML = n1;
+			oSpan.innerHTML = n2*n1+'元';
+			sum();
+		}
+
+		aBtn[1].onclick = function(){
+			n1++;//隐式转换 字符串——>数字
+			oStrong.innerHTML = n1;
+			oSpan.innerHTML = n2*n1+'元';
+			sum();
+		}
+	}
+
+</script>
+</body>
+</html>

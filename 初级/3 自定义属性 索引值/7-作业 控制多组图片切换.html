@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>控制多组图片切换</title>
+<style type="text/css">
+ul{margin: 0;padding: 0;}
+li{padding: 0;list-style: none;}
+body{background: url(img/bg2.jpg)no-repeat;background-size:100% 100%;background-attachment: fixed; }
+#pic{position: relative;}
+#pic span{border-radius: 10px;border: 1px solid #ff6666;font-size: 10px;padding: 2px 8px;}
+#Image1{position: absolute;left: 200px;top: 120px;}
+#Image2{position: absolute;right: 200px;top: 120px;}
+
+</style>
+</head>
+<body>
+<div id="pic">
+	<span>上一组</span>
+	<span>下一组</span>
+	<ul id="Image1">
+		<li><img src="" width="400px;" height="400px;"></li>
+	</ul>
+	<ul id="Image2">
+		<li><img src="" width="400px;" height="400px;"></li>
+	</ul>
+</div>
+<script type="text/javascript">
+	var up = document.getElementsByTagName('span')[0];
+	var down = document.getElementsByTagName('span')[1];
+	var img1 = document.getElementById('Image1');
+	var img2 = document.getElementById('Image2');
+	var arrimage1 = img1.getElementsByTagName('img')[0];
+	var arrimage2 = img2.getElementsByTagName('img')[0];
+	var num = 0;
+	var x = 0;
+	var arr1 = ['img/img1.jpg','img/img2.jpg','img/img3.jpg','img/img4.jpg','img/img5.jpg'];
+	var arr2 = ['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg'];
+
+	//	初始化
+
+	arrimage1.src = arr1[num];
+	arrimage2.src = arr2[num];
+
+	img1.index = num;
+	img2.index = num;
+
+	down.onclick = function(){
+		img1.index++;
+		img2.index++;
+		num = img1.index;
+		x = img2.index;
+		arrimage1.src = arr1[num];
+		arrimage2.src = arr2[x];
+		if (img1.index == 4) {
+			img1.index = -1;
+		}
+		if (img2.index == 4) {
+			img2.index = -1;
+		}
+	}
+
+	up.onclick = function(){
+		if (img1.index == 0) {
+			img1.index = 5;
+		}
+		if (img2.index == 0) {
+			img2.index = 5;
+		}
+		img1.index--;
+		img2.index--;
+		num = img1.index;
+		x = img2.index;
+		arrimage1.src = arr1[num];
+		arrimage2.src = arr2[x];
+	}
+
+	img1.onclick = function(){
+		img1.index++;
+		if (img1.index == 5) {
+			img1.index = 0;
+		};
+		num = img1.index;
+		arrimage1.src = arr1[num];
+	}
+
+	img2.onclick = function(){
+		img2.index++;
+		if (img2.index == 5) {
+			img2.index = 0;
+		};
+		x = img2.index;
+		arrimage2.src = arr2[x];
+	}
+</script>
+</body>
+</html>
